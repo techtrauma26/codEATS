@@ -2,25 +2,53 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif'
 }
 #head {
-    width: 100vw
+    width: 100vw;
 }
 
+.page-header {
+    margin-bottom: 1rem;
+}
+
+/* .container {
+    margin: 10px;
+} */
+
+h2 {
+    font-weight: bold;
+}
 .category {
     color: rgb(169,14,21);
-    font-weight: bolder;
+    text-shadow: 2px 2px rgb(255,201,14);
+    font-weight: bold;
 }       
 
-.location {
-    color: orange;
-    font-weight: bolder;
+.filters {
+    color: rgb(169,14,21);
+    text-shadow: 2px 2px rgb(255,201,14);
+    font-weight: bold;
 
 }
 
-.range {
-    Color: rgb(169,14,21);
-    font-weight: bolder;
-}       
+#list {
+    width: 85vw;
+    text-align: center;
+    margin: 1rem auto;
+    background-color: rgb(255,201,14);
+}
 
-form {
-    width: 100vw;
+.category, .filters {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.filter {
+    color: darkorange;
+    text-shadow: 1px 1px rgb(255,201,14);
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+#filterList {
+    padding: 2rem;
 }

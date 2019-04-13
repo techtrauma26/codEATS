@@ -24,44 +24,69 @@
 <body>
 
     <div class="page-header">
-        <img id="head" src="assets/images/banner.png">
+        <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
 
         <div class="container">
             <div class="category">
-                <h1>
-                    What do you want to eat?
-                </h1>
+                <h2>
+                    What do I want to eat?
+                </h2>
                 <form id="input-form">
-                        <div class="form-group">
-                            <label for="category" id="input-label">
-                            <select class="form-control custom-select" id="school">
+                    <div class="form-group">
+                        <label for="category" id="input-label">
+                            <select class="form-control custom-select" id="list">
                                 <option selected>Food Category</option>
-                                <option>Burgers</option>
-                                <option>American</option>
-                                <option>Italian</option>
-                                <option>Mexican</option>
-                                <option>Indian</option>
-                                <option>Korean</option>                            
+                                <option>Korean</option>
+
                             </select>
-                        </div>
-                        </form>
+                    </div>
+                </form>
 
             </div>
 
-            <div class="location">
-                <h1>
-                    Where am I?
-                </h1>
+            <div class="filters">
+                <h2>
+                    What Matters?
+                </h2>
+
+                <div class="container" id="filterList">
+                    <div class="filter" id="price">
+                        Price
+                    </div>
+
+                    <div class="filter" id="access">
+                        Ease of Access
+                    </div>
+
+                    <div class="filter" id="stars">
+                        Stars
+                    </div>
+
+                    <div class="filter" id="alcohol">
+                        Alcohol
+                    </div>
+
+
+                    <div class="filter" id="reservations">
+                        Reservations
+                    </div>
+
+                    <div class="filter" id="price">
+                        Price
+                    </div>
+                </div>
+
             </div>
 
-            <div class="range">
-                <h1>
+            <!-- <div class="range">
+                <h2>
                     How far do I want to go?
-                </h1>
-            </div>
+                </h2>
+            </div> -->
         </div>
 
     </div>
 
-    <script src="assets/javascript/app.js"></script>
+    <script src=“https://www.gstatic.com/firebasejs/5.9.4/firebase.js“> </script> <script
+        src="assets/javascript/app.js"></script>
 </body>
