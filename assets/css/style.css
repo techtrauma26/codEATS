@@ -1,0 +1,26 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif'
+}
+#head {
+    width: 100vw
+}
+
+.category {
+    color: rgb(169,14,21);
+    font-weight: bolder;
+}       
+
+.location {
+    color: orange;
+    font-weight: bolder;
+
+}
+
+.range {
+    Color: rgb(169,14,21);
+    font-weight: bolder;
+}       
+
+form {
+    width: 100vw;
+}
