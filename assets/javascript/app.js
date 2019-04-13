@@ -4,6 +4,7 @@ let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/busi
 // Our API Key
 // *** Need to make this publicly hidden later
 let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
+const categoriesList = ["American", "BBQ", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Vegetarian"];
 
 // ============================================================
 // FIREBASE Initialization ====================================
@@ -42,6 +43,14 @@ $.ajax({
 // ============================================================
 // Custom Functions ===========================================
 // ============================================================
+
+function buildCategories() {
+    for (let i = 0; i < categoriesList.length; i++) {
+        $("#school").append(`<option>${categoriesList[i]}</option>`);
+    }
+}
+
+buildCategories();
 
 function pushFavorite(dbTestObject) {
     // *** need to update to object literal on user name. Currently hard coded for Cody.
