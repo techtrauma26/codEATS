@@ -1,6 +1,7 @@
 // establish basic query URL 
 // *** Need to add OBJECT LITERALS to modify our query URL w/ location from the search bar, etc.
-let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?text=coffee&location=nyc&price=2";
+//let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?text=coffee&location=nyc&price=2";
+
 // Our API Key
 // *** Need to make this publicly hidden later
 let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
@@ -24,29 +25,12 @@ const database = firebase.database();
 const rootReference = firebase.database().ref();
 
 // ============================================================
-// API Call Format ============================================
-// ============================================================
-
-$.ajax({
-    url: queryURL,
-    method: "GET",
-    headers: {
-        "Authorization": `Bearer ${apiKey}`
-    }
-}).then(function(response) {
-    let dbTestObject = {"name": response.businesses[2].name, "id": response.businesses[2].id};
-    //console.log(response)
-    //console.log(dbTestObject)
-    //pushFavorite(dbTestObject);
-});
-
-// ============================================================
 // Custom Functions ===========================================
 // ============================================================
 
 function buildCategories() {
     for (let i = 0; i < categoriesList.length; i++) {
-        $("#school").append(`<option>${categoriesList[i]}</option>`);
+        $("#list").append(`<option>${categoriesList[i]}</option>`);
     }
 }
 
@@ -57,6 +41,33 @@ function pushFavorite(dbTestObject) {
     database.ref("users/cody/favorites").push(dbTestObject);
 }
 
+// modify API query after the user hits search
+// *** may need to build in some checks later to make sure to account for undefined, etc.
+$("#eat").on("click", function(){
+
+    let currentCategory = $("#list").val();
+    // *** make SMART later
+    let currentLocation = "&location=nyc";
+    // *** make SMART later
+    let currentPrice = "&price=2";
+    let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?text=${currentCategory}${currentLocation}${currentPrice}`;
+    console.log(queryURL)
+    
+
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${apiKey}`
+        }
+    }).then(function(response) {
+        //let dbTestObject = {"name": response.businesses[2].name, "id": response.businesses[2].id};
+        console.log(response)
+    });
+
+})
+let currentCategory = $("#list").val();
+console.log(currentCategory)
 
 // ========= Testing below
 
