@@ -5,7 +5,7 @@
 // Our API Key
 // *** Need to make this publicly hidden later
 let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
-const categoriesList = ["American", "BBQ", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Vegetarian"];
+const categoriesList = ["American", "BBQ", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Vegetarian"];
 
 // ============================================================
 // FIREBASE Initialization ====================================
@@ -46,11 +46,14 @@ function pushFavorite(dbTestObject) {
 $("#eat").on("click", function(){
 
     let currentCategory = $("#list").val();
+    currentCategory = currentCategory.toLowerCase() + "+food";
     // *** make SMART later
-    let currentLocation = "&location=nyc";
+    let currentLocation = "&location=atlanta";
     // *** make SMART later
     let currentPrice = "&price=2";
-    let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?text=${currentCategory}${currentLocation}${currentPrice}`;
+    // *** make SMART later
+    let currentRadius = "&radius=5000"
+    let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${currentCategory}${currentLocation}${currentPrice}${currentRadius}&sort_by=best_match`;
     console.log(queryURL)
     
 
@@ -67,7 +70,6 @@ $("#eat").on("click", function(){
 
 })
 let currentCategory = $("#list").val();
-console.log(currentCategory)
 
 // ========= Testing below
 
