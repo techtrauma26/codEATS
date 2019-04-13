@@ -16,18 +16,12 @@ body {
 h2 {
     font-weight: bold;
 }
-.category {
+.category, .location, .filters {
     color: rgb(169,14,21);
     text-shadow: 2px 2px rgb(255,201,14);
     font-weight: bold;
 }       
 
-.filters {
-    color: rgb(169,14,21);
-    text-shadow: 2px 2px rgb(255,201,14);
-    font-weight: bold;
-
-}
 
 #list {
     width: 85vw;
@@ -36,7 +30,7 @@ h2 {
     background-color: rgb(255,201,14);
 }
 
-.category, .filters {
+.category, .location, .filters {
     margin-top: 1rem;
     text-align: center;
 }
@@ -51,4 +45,15 @@ h2 {
 
 #filterList {
     padding: 2rem;
+}
+
+#eat {
+    color: rgb(169,14,21);
+    text-shadow: 2px 2px darkorange;
+    font-weight: bold;
+    border: 5px solid rgb(169,14,21);
+    text-align: center;
+    align-content: center;
+    display: inherit;
+    width: 90vw;
 }
