@@ -1,4 +1,4 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -32,17 +32,18 @@
             <h2>
                 What do I want to eat?
             </h2>
-            <form id="input-form">
-                <div class="form-group">
+            <div class="form-group">
+                <form id="input-form">
+
                     <label for="category" id="input-label">
                         <select class="form-control custom-select" id="list">
                             <option selected>Food Category</option>
 
 
                         </select>
-                </div>
-            </form>
 
+                </form>
+            </div>
         </div>
 
         <div class="location">
@@ -50,11 +51,21 @@
                 Where Am I?
             </h2>
 
+            <form id="locale">
+                <input type="text" id="location-input" value="Input My Location"><br>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="">Use my Geolocation</label>
+                    </div>
+                </div>
+
+
         </div>
 
         <div class="filters">
             <h2>
-                What Matters?
+                Meal-terial Matters
             </h2>
 
             <div class="container" id="filterList">
@@ -89,10 +100,11 @@
 
         <button type="button" class="btn btn-warning btn-lg" id="eat">EAT!</button>
     </div>
-    
+
 
 
 
 
     <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/location.js"></script>
 </body>
