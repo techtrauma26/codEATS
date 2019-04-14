@@ -77,6 +77,9 @@ $("#eat").on("click", function(){
         console.log(response)
     });
 
+    // *** make sure it only takes them to the new page if the criteria are met.
+    window.location.href = ("results.html");
+
 })
 let currentCategory = $("#list").val();
 
