@@ -24,10 +24,12 @@ h2 {
 
 
 #list {
-    width: 85vw;
+    width: 100%;
+    height: auto;
     text-align: center;
     margin: 1rem auto;
     background-color: rgb(255,201,14);
+    border: 5px solid rgb(169,14,21);
 }
 
 .category, .location, .filters {
@@ -55,5 +57,5 @@ h2 {
     text-align: center;
     align-content: center;
     display: inherit;
-    width: 90vw;
+    width: 50%;
 }
