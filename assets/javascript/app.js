@@ -5,7 +5,7 @@
 // Our API Key
 // *** Need to make this publicly hidden later
 let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
-const categoriesList = ["American", "BBQ", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Vegetarian"];
+const categoriesList = ["American", "BBQ", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Thai", "Mediterranean", "Vegetarian"];
 
 // ============================================================
 // FIREBASE Initialization ====================================
@@ -41,8 +41,16 @@ function pushFavorite(dbTestObject) {
     database.ref("users/cody/favorites").push(dbTestObject);
 }
 
+// Code to determine what page we are on to validate functions
+let currentPage = window.location.href.split("/").pop();
+if(currentPage === "index.html")  {
+    //$('body').append($('<script ... ></script>'))
+}
+
 // modify API query after the user hits search
 // *** may need to build in some checks later to make sure to account for undefined, etc.
+// gets the name of the page we are currently on (such as "index.html")
+
 $("#eat").on("click", function(){
 
     let currentCategory = $("#list").val();
@@ -50,6 +58,7 @@ $("#eat").on("click", function(){
     // *** make SMART later
     let currentLocation = "&location=atlanta";
     // *** make SMART later
+    // if current price is not undefined, grab from DOM. Else, insert empty string.
     let currentPrice = "&price=2";
     // *** make SMART later
     let currentRadius = "&radius=5000"

@@ -24,10 +24,15 @@ h2 {
 
 
 #list {
-    width: 85vw;
+    width: 100%;
+    height: auto;
     text-align: center;
     margin: 1rem auto;
     background-color: rgb(255,201,14);
+    border: 5px solid rgb(169,14,21);
+    color: rgb(169,14,21);
+    font-weight: bold;
+    text-shadow: 2px 2px darkorange;
 }
 
 .category, .location, .filters {
@@ -44,7 +49,7 @@ h2 {
 }
 
 #filterList {
-    padding: 2rem;
+    padding: 1rem;
 }
 
 #eat {
@@ -54,6 +59,7 @@ h2 {
     border: 5px solid rgb(169,14,21);
     text-align: center;
     align-content: center;
+    margin: 0 auto;
     display: inherit;
-    width: 90vw;
+    width: 50%;
 }
