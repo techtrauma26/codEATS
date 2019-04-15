@@ -10,7 +10,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -20,131 +20,65 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src=“https://www.gstatic.com/firebasejs/5.9.4/firebase.js“></script>
     <style>
-            body {
-              font-family: Arial, Helvetica, sans-serif;
-            }
+            body {font-family: Arial, Helvetica, sans-serif;}
+            form {border: 3px solid #f1f1f1;}
             
-            * {
+            input[type=text], input[type=password] {
+              width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0;
+              display: inline-block;
+              border: 1px solid #ccc;
               box-sizing: border-box;
             }
             
-            /* style the container */
-            .container {
-              position: relative;
-              border-radius: 5px;
-              background-color: #f2f2f2;
-              padding: 20px 0 30px 0;
-            } 
-            
-            /* style inputs and link buttons */
-            input,
-            .btn {
-              width: 100%;
-              padding: 12px;
-              border: none;
-              border-radius: 4px;
-              margin: 5px 0;
-              opacity: 0.85;
-              display: inline-block;
-              font-size: 17px;
-              line-height: 20px;
-              text-decoration: none; /* remove underline from anchors */
-            }
-            
-            input:hover,
-            .btn:hover {
-              opacity: 1;
-            }
-            
-            /* add appropriate colors to fb, twitter and google buttons */
-            .fb {
-              background-color: #3B5998;
-              color: white;
-            }
-            
-            .twitter {
-              background-color: #55ACEE;
-              color: white;
-            }
-            
-            .google {
-              background-color: #dd4b39;
-              color: white;
-            }
-            
-            /* style the submit button */
-            input[type=submit] {
+            button {
               background-color: darkorange;
               color: white;
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
               cursor: pointer;
+              width: 100%;
             }
             
-            input[type=submit]:hover {
-              background-color:  rgb(169,14,21);;
+            button:hover {
+              opacity: 0.8;
             }
             
-            /* Two-column layout */
-            .col {
-              float: left;
-              width: 50%;
-              margin: auto;
-              padding: 0 50px;
-              margin-top: 6px;
+            .cancelbtn {
+              width: auto;
+              padding: 10px 18px;
+              background-color: #f44336;
             }
             
-            /* Clear floats after the columns */
-            .row:after {
-              content: "";
-              display: table;
-              clear: both;
-            }
-            
-            /* vertical line */
-            .vl {
-              position: absolute;
-              left: 50%;
-              transform: translate(-50%);
-              border: 2px solid #ddd;
-              height: 175px;
-            }
-            
-            /* text inside the vertical line */
-            .vl-innertext {
-              position: absolute;
-              top: 50%;
-              transform: translate(-50%, -50%);
-              background-color: #f1f1f1;
-              border: 1px solid #ccc;
-              border-radius: 50%;
-              padding: 8px 10px;
-            }
-            
-            /* hide some text on medium and large screens */
-            .hide-md-lg {
-              display: none;
-            }
-            
-            /* bottom container */
-            .bottom-container {
+            .imgcontainer {
               text-align: center;
-              background-color: #666;
-              border-radius: 0px 0px 4px 4px;
+              margin: 24px 0 12px 0;
             }
             
-            /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-            @media screen and (max-width: 650px) {
-              .col {
-                width: 100%;
-                margin-top: 0;
+            img.avatar {
+              width: 40%;
+              border-radius: 50%;
+            }
+            
+            .container {
+              padding: 16px;
+            }
+            
+            span.psw {
+              float: right;
+              padding-top: 16px;
+            }
+            
+            /* Change styles for span and cancel button on extra small screens */
+            @media screen and (max-width: 300px) {
+              span.psw {
+                 display: block;
+                 float: none;
               }
-              /* hide the vertical line */
-              .vl {
-                display: none;
-              }
-              /* show the hidden text on small screens */
-              .hide-md-lg {
-                display: block;
-                text-align: center;
+              .cancelbtn {
+                 width: 100%;
               }
             }
             </style>
@@ -156,50 +90,28 @@
                 <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
     </div>
     
-<div class="container">
-        <form action="/action_page.php">
-          <div class="row">
-            <h2 style="text-align:center">Login with Social Media or Manually</h2>
-            <div class="vl">
-              <span class="vl-innertext">or</span>
-            </div>
-      
-            <div class="col">
-              <a href="#" class="fb btn">
-                <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-               </a>
-              <a href="#" class="twitter btn">
-                <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-              </a>
-              <a href="#" class="google btn"><i class="fa fa-google fa-fw">
-                </i> Login with Google+
-              </a>
-            </div>
-      
-            <div class="col">
-              <div class="hide-md-lg">
-                <p>Or sign in manually:</p>
-              </div>
-      
-              <input type="text" name="username" placeholder="Username" required>
-              <input type="password" name="password" placeholder="Password" required>
-              <input type="submit" value="Login">
-            </div>
-            
-          </div>
-        </form>
-      </div>
-      
-      <div class="bottom-container">
-        <div class="row">
-          <div class="col">
-            <a href="#" style="color:white" class="btn">Sign up</a>
-          </div>
-          <div class="col">
-            <a href="#" style="color:white" class="btn">Forgot password?</a>
-          </div>
-        </div>
-      </div>
+<h2>Login </h2>
+
+<form action="/action_page.php">
+  <div class="imgcontainer">
+    <img src="assets\images\login.jpg" alt="food" class="food">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+        
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    
+  </div>
+</form>
     <script src="assets/javascript/app.js"></script>
 </body>
-</html>
