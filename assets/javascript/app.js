@@ -1,7 +1,6 @@
 $(document).ready(function(){
-    // *** Need to add OBJECT LITERALS to modify our query URL w/ location from the search bar, etc.
-    //let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?text=coffee&location=nyc&price=2";
 
+    let currentPage = window.location.href.split("/").pop();
     // Our API Key
     // *** Need to make this publicly hidden later
     let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
@@ -34,50 +33,21 @@ $(document).ready(function(){
         }
     }
 
-    buildCategories();
-
     function pushFavorite(dbTestObject) {
         // *** need to update to object literal on user name. Currently hard coded for Cody.
         database.ref("users/cody/favorites").push(dbTestObject);
+        //database.ref(`users/${currentUser}/favorites`).push(dbTestObject);
     }
 
-    // Code to determine what page we are on to validate functions
-    let currentPage = window.location.href.split("/").pop();
-    if(currentPage === "index.html")  {
-        //$('body').append($('<script ... ></script>'))
-    }
-
-    // modify API query after the user hits search
-    // *** may need to build in some checks later to make sure to account for undefined, etc.
-    // gets the name of the page we are currently on (such as "index.html")
-
-    $("#eat").on("click", function(){
-        // rough code for making a modal appear if minimum search criteria is not met.
-        // $("#myBtn").click(function(){
-        //     $("#myModal").modal();
-        //   });
-
-        let currentCategory = $("#list").val();
-        currentCategory = currentCategory.toLowerCase() + "+food";
-        // *** make SMART later
-        let currentLocation = "&location=atlanta";
-        // *** make SMART later
-        // if current price is not undefined, grab from DOM. Else, insert empty string.
-        let currentPrice = "&price=2";
-        //let currentPrice = $("#price").val();
-        if (currentPrice === undefined) {
-            currentPrice = ""; // insert a blank string so as to not modify the API call.
-        }
-        // *** make SMART later
-        //let currentRadius = $("#radius").val();
-        let currentRadius = "&radius=5000"
-        if (currentRadius === undefined) {
-            currentRadius = "";
-        }
-        let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${currentCategory}${currentLocation}${currentPrice}${currentRadius}&sort_by=best_match`;
+    // the function that performs the yelp API call using data established by the user on the index.html page.
+    function search() {
+        let category = sessionStorage.getItem("category");
+        let location = sessionStorage.getItem("location");
+        let price = sessionStorage.getItem("price");
+        let radius = sessionStorage.getItem("radius");
+        let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${category}${location}${price}${radius}`;
         console.log(queryURL)
         
-
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -88,12 +58,64 @@ $(document).ready(function(){
             //let dbTestObject = {"name": response.businesses[2].name, "id": response.businesses[2].id};
             console.log(response)
         });
+    }
+
+    // If we are on index.html, build the category list.
+    if (currentPage === "index.html") {
+        buildCategories();
+    }
+    // If we are on the search page, perform the API call.
+    if (currentPage === "results.html") {
+        search();
+    }
+
+
+    $("#eat").on("click", function(){
+        // clear variables
+        let currentCategory = "";
+        let currentLocation = "";
+        let currentPrice = "";
+        let currentRadius = 0;
+        // rough code for making a modal appear if minimum search criteria is not met.
+
+        currentCategory = $("#list").val();
+        if (currentCategory !== "Food Category") {
+            currentCategory = currentCategory.toLowerCase() + "+food";
+            sessionStorage.setItem("category", currentCategory); // store variable in session data to use on search page
+        }
+
+        // *** need checkbox logic
+        // if($("#isAgeSelected").is(':checked'))
+        currentLocation = $("#location-input").val().trim().toLowerCase(); // convert to lowercase and remove all extra spaces w/ trim
+        currentLocation = currentLocation.replace(/\s/g, "+"); // remove all spaces from input and replace with + (so it will work with api)
+        if (currentLocation.trim() !== undefined && currentLocation.trim() !== "") {
+            currentLocation = "&location=" + currentLocation;
+            sessionStorage.setItem("location", currentLocation);
+        }
+        else {
+            // *** should probably change this to a modal
+            currentLocation = "";
+        }
+        // *** make SMART later
+        // if current price is not undefined, grab from DOM. Else, insert empty string.
+        currentPrice = "&price=2";
+        sessionStorage.setItem("price", currentPrice);
+        //let currentPrice = $("#price").val();
+        if (currentPrice === undefined) {
+            currentPrice = ""; // insert a blank string so as to not modify the API call.
+        }
+        // *** make SMART later
+        //let currentRadius = $("#radius").val();
+        currentRadius = "&radius=5000"
+        sessionStorage.setItem("radius", currentRadius);
+        if (currentRadius === undefined) {
+            currentRadius = "";
+        }
 
         // *** make sure it only takes them to the new page if the criteria are met.
         window.location.href = ("results.html");
 
     })
-    let currentCategory = $("#list").val();
 
     // ========= Testing below
 
