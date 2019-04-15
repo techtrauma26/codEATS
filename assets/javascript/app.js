@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+    // Load the current user from session storage
+    let currentUser = sessionStorage.getItem("username");
     let currentPage = window.location.href.split("/").pop();
     // Our API Key
     // *** Need to make this publicly hidden later

@@ -18,7 +18,7 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src=“https://www.gstatic.com/firebasejs/5.9.4/firebase.js“></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
     <style>
             body {font-family: Arial, Helvetica, sans-serif;}
             form {border: 3px solid #f1f1f1;}
@@ -32,7 +32,7 @@
               box-sizing: border-box;
             }
             
-            button {
+            #login-button {
               background-color: darkorange;
               color: white;
               padding: 14px 20px;
@@ -92,7 +92,8 @@
     
 <h2>Login </h2>
 
-<form action="/action_page.php">
+<!-- action="/action_page.php" -->
+<form> 
   <div class="imgcontainer">
     <img src="assets\images\login.jpg" alt="food" class="food">
   </div>
@@ -102,9 +103,9 @@
     <input type="text" id="username" placeholder="Enter Username" name="uname" required>
 
         
-    <button id="login-button" type="submit">Login</button>
+    <input id="login-button" type="button" value="Login"></input>
     <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
+      <input id="login-remember" type="checkbox" checked="checked" name="remember"> Remember me
     </label>
   </div>
 
@@ -113,5 +114,5 @@
     
   </div>
 </form>
-    <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/login.js"></script>
 </body>
