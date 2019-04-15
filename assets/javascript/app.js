@@ -60,10 +60,7 @@ $(document).ready(function(){
         });
     }
 
-    // If we are on index.html, build the category list.
-    if (currentPage === "index.html") {
-        buildCategories();
-    }
+    buildCategories();
     // If we are on the search page, perform the API call.
     if (currentPage === "results.html") {
         search();
