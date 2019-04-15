@@ -6,7 +6,7 @@ body {
 }
 
 .page-header {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 /* .container {
@@ -20,14 +20,16 @@ h2 {
     color: rgb(169,14,21);
     text-shadow: 2px 2px rgb(255,201,14);
     font-weight: bold;
+    text-align: center;
+    margin: -.5em;
 }       
 
 
-#list {
+#list, #location-input {
     width: 100%;
     height: auto;
     text-align: center;
-    margin: 1rem auto;
+    margin: 0 auto;
     background-color: rgb(255,201,14);
     border: 5px solid rgb(169,14,21);
     color: rgb(169,14,21);
@@ -35,9 +37,9 @@ h2 {
     text-shadow: 2px 2px darkorange;
 }
 
-.category, .location, .filters {
-    margin-top: 1rem;
-    text-align: center;
+#location-input {
+    width: 75%;
+    margin: 0;
 }
 
 .filter {
@@ -48,9 +50,9 @@ h2 {
     text-align: center;
 }
 
-#filterList {
-    padding: 1rem;
-}
+/* #filterList {
+    /* padding: .1rem; */
+/* } */
 
 #eat {
     color: rgb(169,14,21);
@@ -59,7 +61,25 @@ h2 {
     border: 5px solid rgb(169,14,21);
     text-align: center;
     align-content: center;
-    margin: 0 auto;
+    margin: 1rem auto;
     display: inherit;
     width: 50%;
+    margin-bottom: .25rem;
+}
+
+.restaurant {
+    color: rgb(169,14,21);
+    text-shadow: .5px 1px rgb(255,201,14);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    
+}
+
+.restaurant-map {
+    width: .25vw; 
+    height: .25vh;
+}
+
+.results-page {
+    background-color: rgb(250, 252, 147)
 }
