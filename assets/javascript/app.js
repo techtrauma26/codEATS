@@ -68,6 +68,23 @@ $(document).ready(function(){
         search();
     }
 
+    $("#geolocation").on("click", function(){
+        if($("#geolocation").is(':checked')) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(userPosition);
+
+                function userPosition(position) {
+                    let latitude = position.coords.latitude;
+                    let longitude = position.coords.longitude;
+                    currentLocation = `&latitude=${latitude}&longitude=${longitude}`;
+                    sessionStorage.setItem("location", currentLocation);
+                }
+              }
+              else {
+                  alert("Geolocation functionality is not supported by your browser. Please type in a location.")
+              }
+        }
+    })
 
     $("#eat").on("click", function(){
         // clear variables
@@ -83,17 +100,20 @@ $(document).ready(function(){
             sessionStorage.setItem("category", currentCategory); // store variable in session data to use on search page
         }
 
-        // *** need checkbox logic
-        // if($("#isAgeSelected").is(':checked'))
-        currentLocation = $("#location-input").val().trim().toLowerCase(); // convert to lowercase and remove all extra spaces w/ trim
-        currentLocation = currentLocation.replace(/\s/g, "+"); // remove all spaces from input and replace with + (so it will work with api)
-        if (currentLocation.trim() !== undefined && currentLocation.trim() !== "") {
-            currentLocation = "&location=" + currentLocation;
-            sessionStorage.setItem("location", currentLocation);
+        // check to see if geolocation marker is NOT checked. If not, we use text entry
+        if ($("#geolocation").is(':checked')) {
         }
         else {
-            // *** should probably change this to a modal
-            currentLocation = "";
+            currentLocation = $("#location-input").val().trim().toLowerCase(); // convert to lowercase and remove all extra spaces w/ trim
+            currentLocation = currentLocation.replace(/\s/g, "+"); // remove all spaces from input and replace with + (so it will work with api)
+            if (currentLocation.trim() !== undefined && currentLocation.trim() !== "") {
+                currentLocation = "&location=" + currentLocation;
+                sessionStorage.setItem("location", currentLocation);
+            }
+            else {
+                // *** should probably change this to a modal
+                currentLocation = "";
+            }
         }
         // *** make SMART later
         // if current price is not undefined, grab from DOM. Else, insert empty string.
