@@ -59,7 +59,27 @@ $(document).ready(function(){
         }).then(function(response) {
             //let dbTestObject = {"name": response.businesses[2].name, "id": response.businesses[2].id};
             console.log(response)
+            for (let i = 0; i < response.businesses.length; i++) {
+                // Pull data for each of the restaurants
+                let name = response.businesses[i].name;
+                let rating = response.businesses[i].rating;
+                let price = response.businesses[i].price;
+                let profilePic = response.businesses[i].image_url;
+                let card = 
+                `<div class="card content-align-center">
+                    <img class="card-img-top" id="cardMapImg" style="width: 200px; height: 200px; padding: 10px;" src="${profilePic}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${name}</h5>
+                </div>
+                    <ul class="list-group list-group-flush"s>
+                        <li class="list-group-item" id="rating">${rating}</li>
+                        <li class="list-group-item" id="priceRange">${price}</li>
+                    </ul>
+                </div>`;
+                $("#search-results").append(card);
+            }
         });
+
     }
 
     buildCategories();
