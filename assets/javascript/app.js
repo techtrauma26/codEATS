@@ -104,6 +104,7 @@ $(document).ready(function(){
         if ($("#geolocation").is(':checked')) {
         }
         else {
+            console.log("wow")
             currentLocation = $("#location-input").val().trim().toLowerCase(); // convert to lowercase and remove all extra spaces w/ trim
             currentLocation = currentLocation.replace(/\s/g, "+"); // remove all spaces from input and replace with + (so it will work with api)
             if (currentLocation.trim() !== undefined && currentLocation.trim() !== "") {
@@ -143,8 +144,8 @@ $(document).ready(function(){
     rootReference.once("value") // pulls data one time 
         .then(function(snapshot) {
             // returns the array of objects in the users/name/favorites section
-            let favoritesList = snapshot.child("users/cody/favorites").val();
-            let blackList = snapshot.child("users/cody/blacklist").val();
+            let favoritesList = snapshot.child(`users/${currentUser}/favorites`).val();
+            let blackList = snapshot.child(`users/${currentUser}/blacklist`).val();
 
             // This section of code loops through each item in the favorites list and appends it to a list.
             snapshot.child("users/cody/favorites").forEach(function(favoriteSnapshot) {
