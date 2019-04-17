@@ -75,11 +75,18 @@ h2 {
     
 }
 
-.restaurant-map {
-    width: .25vw; 
-    height: .25vh;
+.map {
+    height: 50px;
+    width: 50px;
+     
+
 }
 
 .results-page {
     background-color: rgb(250, 252, 147)
+}
+
+p {
+    margin: -.5rem;
+    text-align: center;
 }

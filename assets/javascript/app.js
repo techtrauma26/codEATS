@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     // Load the current user from session storage
     let currentUser = sessionStorage.getItem("username");
@@ -13,13 +13,13 @@ $(document).ready(function(){
     // ============================================================
 
     const config = {
-        apiKey: "AIzaSyC6JCjLeAlqzN4h32NAPlQdDKVv-Ij5qLc",
-        authDomain: "codeats-43f9e.firebaseapp.com",
-        databaseURL: "https://codeats-43f9e.firebaseio.com",
-        projectId: "codeats-43f9e",
-        storageBucket: "codeats-43f9e.appspot.com",
-        messagingSenderId: "1033500801409"
-      };
+        apiKey: "AIzaSyC6JCjLeAlqzN4h32NAPlQdDKVv-Ij5qLc",
+        authDomain: "codeats-43f9e.firebaseapp.com",
+        databaseURL: "https://codeats-43f9e.firebaseio.com",
+        projectId: "codeats-43f9e",
+        storageBucket: "codeats-43f9e.appspot.com",
+        messagingSenderId: "1033500801409"
+    };
 
     firebase.initializeApp(config);
     const database = firebase.database();
@@ -49,27 +49,37 @@ $(document).ready(function(){
         let radius = sessionStorage.getItem("radius");
         let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${category}${location}${price}${radius}`;
         console.log(queryURL)
-        
+
         $.ajax({
             url: queryURL,
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${apiKey}`
             }
-        }).then(function(response) {
+        }).then(function (response) {
             //let dbTestObject = {"name": response.businesses[2].name, "id": response.businesses[2].id};
             console.log(response)
             for (let i = 0; i < response.businesses.length; i++) {
                 // Pull data for each of the restaurants
                 let name = response.businesses[i].name;
+                let lat = response.businesses[i].coordinates.latitude;
+                let long = response.businesses[i].coordinates.longitude;
+
+                console.log("lat:", lat, "long:", long);
+                let address = response.businesses[i].location.display_address;
                 let rating = response.businesses[i].rating;
                 let price = response.businesses[i].price;
                 let profilePic = response.businesses[i].image_url;
-                let card = 
-                `<div class="card content-align-center">
+                
+                console.log(resultMap)
+                let card =
+                    `<div class="card content-align-center">
                     <img class="card-img-top" id="cardMapImg" style="width: 200px; height: 200px; padding: 10px;" src="${profilePic}" alt="Card image cap">
                 <div class="card-body">
+                <div class="map" id="map"></div>
+
                     <h5 class="card-title">${name}</h5>
+                    <p id="strAdd"> ${address} </p>
                 </div>
                     <ul class="list-group list-group-flush"s>
                         <li class="list-group-item" id="rating">${rating}</li>
@@ -78,9 +88,13 @@ $(document).ready(function(){
                 </div>`;
                 $("#search-results").append(card);
             }
+            
         });
+    
 
     }
+
+  
 
     buildCategories();
     // If we are on the search page, perform the API call.
@@ -88,8 +102,8 @@ $(document).ready(function(){
         search();
     }
 
-    $("#geolocation").on("click", function(){
-        if($("#geolocation").is(':checked')) {
+    $("#geolocation").on("click", function () {
+        if ($("#geolocation").is(':checked')) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(userPosition);
 
@@ -99,14 +113,14 @@ $(document).ready(function(){
                     currentLocation = `&latitude=${latitude}&longitude=${longitude}`;
                     sessionStorage.setItem("location", currentLocation);
                 }
-              }
-              else {
-                  alert("Geolocation functionality is not supported by your browser. Please type in a location.")
-              }
+            }
+            else {
+                alert("Geolocation functionality is not supported by your browser. Please type in a location.")
+            }
         }
     })
 
-    $("#eat").on("click", function(){
+    $("#eat").on("click", function () {
         // clear variables
         let currentCategory = "";
         let currentLocation = "";
@@ -162,13 +176,13 @@ $(document).ready(function(){
 
     // *** pulling data one time most for testing. Later, we will need to update this each time you load the lists
     rootReference.once("value") // pulls data one time 
-        .then(function(snapshot) {
+        .then(function (snapshot) {
             // returns the array of objects in the users/name/favorites section
             let favoritesList = snapshot.child(`users/${currentUser}/favorites`).val();
             let blackList = snapshot.child(`users/${currentUser}/blacklist`).val();
 
             // This section of code loops through each item in the favorites list and appends it to a list.
-            snapshot.child("users/cody/favorites").forEach(function(favoriteSnapshot) {
+            snapshot.child("users/cody/favorites").forEach(function (favoriteSnapshot) {
                 let listItemText = favoriteSnapshot.val().name;
                 let listItemID = favoriteSnapshot.val().id;
 
@@ -180,4 +194,14 @@ $(document).ready(function(){
 
             })
         });
+
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -34.397, lng: 150.644},
+              zoom: 8
+            });
+          }
+
+          initMap();
 });
