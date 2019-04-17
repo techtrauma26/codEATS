@@ -2,96 +2,40 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>codEATS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
-    <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
-    <style>
-            body {font-family: Arial, Helvetica, sans-serif;}
-            form {border: 3px solid #f1f1f1;}
-            
-            input[type=text], input[type=password] {
-              width: 100%;
-              padding: 12px 20px;
-              margin: 8px 0;
-              display: inline-block;
-              border: 1px solid #ccc;
-              box-sizing: border-box;
-            }
-            
-            #login-button {
-              background-color: darkorange;
-              color: white;
-              padding: 14px 20px;
-              margin: 8px 0;
-              border: none;
-              cursor: pointer;
-              width: 100%;
-            }
-            
-            button:hover {
-              opacity: 0.8;
-            }
-            
-            .cancelbtn {
-              width: auto;
-              padding: 10px 18px;
-              background-color: #f44336;
-            }
-            
-            .imgcontainer {
-              text-align: center;
-              margin: 24px 0 12px 0;
-            }
-            
-            img.avatar {
-              width: 40%;
-              border-radius: 50%;
-            }
-            
-            .container {
-              padding: 16px;
-            }
-            
-            span.psw {
-              float: right;
-              padding-top: 16px;
-            }
-            
-            /* Change styles for span and cancel button on extra small screens */
-            @media screen and (max-width: 300px) {
-              span.psw {
-                 display: block;
-                 float: none;
-              }
-              .cancelbtn {
-                 width: 100%;
-              }
-            }
-            </style>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>codEATS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+  <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 </head>
 
 <body>
 
-        <div class="page-header">
-                <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
-    
+  <div class="page-header">
+    <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
+
     <div class="topnav">
       <a href="index.html" class="active"></a>
-     
+
       <div id="myLinks">
         <a href="profile.html">Profile</a>
         <a href="login.html">Login</a>
@@ -100,35 +44,56 @@
         <a href="blacklist.html">Blacklist</a>
 
       </div>
-      
+
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
     </div>
   </div>
-<h2> </h2>
 
-<!-- action="/action_page.php" -->
-<form> 
-  <div class="imgcontainer">
-    <img src="assets\images\login.jpg" alt="food" class="food">
-  </div>
+  <form>
+    <div class="imgcontainer">
+      <img src="assets\images\login.jpg" alt="food" class="food">
+    </div>
 
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" id="username" placeholder="Enter Username" name="uname" required>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" id="username" placeholder="Enter Username" name="uname" required>
 
-        
-    <input id="login-button" type="button" value="Login"></input>
-    <label>
-      <input id="login-remember" type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-  </div>
+      <a href="#myModal" class="trigger-btn" id="login-button" data-toggle="modal">Login</a>
+     
+     
+      <label>
+        <input id="login-remember" type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    
-  </div>
-</form>
-    <script src="assets/javascript/login.js"></script>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" class="cancelbtn">Cancel</button>
+
+    </div>
+  </form>
+
+
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="icon-box">
+            <i class="material-icons">close</i>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body text-center">
+          <h4>Ooops!</h4>	
+          <p>Your username was not found in our records. Please select a valid username!</p>
+          <button class="btn btn-success" data-dismiss="modal">Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <script src="assets/javascript/login.js"></script>
 </body>
+
+</html>
