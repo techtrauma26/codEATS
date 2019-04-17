@@ -35,10 +35,8 @@ $(document).ready(function(){
         }
     }
 
-    function pushFavorite(dbTestObject) {
-        // *** need to update to object literal on user name. Currently hard coded for Cody.
-        database.ref("users/cody/favorites").push(dbTestObject);
-        //database.ref(`users/${currentUser}/favorites`).push(dbTestObject);
+    function pushFavorite(favoriteObject) {
+        database.ref(`users/${currentUser}/favorites`).push(favoriteObject);
     }
 
     // the function that performs the yelp API call using data established by the user on the index.html page.
@@ -57,7 +55,6 @@ $(document).ready(function(){
                 "Authorization": `Bearer ${apiKey}`
             }
         }).then(function(response) {
-            //let dbTestObject = {"name": response.businesses[2].name, "id": response.businesses[2].id};
             console.log(response)
             for (let i = 0; i < response.businesses.length; i++) {
                 // Pull data for each of the restaurants
@@ -65,6 +62,7 @@ $(document).ready(function(){
                 let rating = response.businesses[i].rating;
                 let reviewCount = response.businesses[i].review_count;
                 let price = response.businesses[i].price;
+                let businessID = response.businesses[i].id;
                 let ratingPath = "";
                 // determine which image to use for the yelp rating
                 switch (rating) {
@@ -100,11 +98,12 @@ $(document).ready(function(){
                         break;
                   }
                 let profilePic = response.businesses[i].image_url;
+                // create a bootstrap card and pass in variables for each restaurant
                 let card = 
-                `<div class="card content-align-center">
+                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
                     <img class="card-img-top" id="cardMapImg" style="width: 200px; height: 200px; padding: 10px;" src="${profilePic}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">${name}</h5>
+                    <h5 class="card-title" id="name" style="float: left;">${name}</h5><i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i>
                 </div>
                     <ul class="list-group list-group-flush"s>
                         <li class="list-group-item" id="priceRange">${price}</li>
@@ -122,6 +121,18 @@ $(document).ready(function(){
     if (currentPage === "results.html") {
         search();
     }
+
+    // Push a restaurant to your favorites list if you hit the thumbs up button
+    $("#search-results").on("click", ".fa-thumbs-up", function(){
+        // gather the necessary data packet from parent attributes.
+        let favoriteName = $(this).parent().parent().attr("businessname");
+        let favoriteBusinessID = $(this).parent().parent().attr("businessid");
+        let favoriteCatgeory = $(this).parent().parent().attr("category");
+        // construct an object to pass to the database.
+        let favoriteObject = {"name": favoriteName, "id": favoriteBusinessID, "category": favoriteCatgeory};
+        // push the new favorite object to the database.
+        pushFavorite(favoriteObject);
+    })
 
     $("#geolocation").on("click", function(){
         if($("#geolocation").is(':checked')) {
@@ -159,7 +170,6 @@ $(document).ready(function(){
         if ($("#geolocation").is(':checked')) {
         }
         else {
-            console.log("wow")
             currentLocation = $("#location-input").val().trim().toLowerCase(); // convert to lowercase and remove all extra spaces w/ trim
             currentLocation = currentLocation.replace(/\s/g, "+"); // remove all spaces from input and replace with + (so it will work with api)
             if (currentLocation.trim() !== undefined && currentLocation.trim() !== "") {
@@ -203,7 +213,7 @@ $(document).ready(function(){
             let blackList = snapshot.child(`users/${currentUser}/blacklist`).val();
 
             // This section of code loops through each item in the favorites list and appends it to a list.
-            snapshot.child("users/cody/favorites").forEach(function(favoriteSnapshot) {
+            snapshot.child(`users/${currentUser}/favorites`).forEach(function(favoriteSnapshot) {
                 let listItemText = favoriteSnapshot.val().name;
                 let listItemID = favoriteSnapshot.val().id;
 
