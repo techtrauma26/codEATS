@@ -5,12 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>codEATS</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/fixed_bottom.css">
     <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -18,14 +20,42 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="assets/javascript/modernizr-2.6.2.min.js"></script>
 
 </head>
 
-<body>
+<body class="smartcms_body">
 
     <div class="page-header">
         <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
+
     </div>
-    <script src=“https://www.gstatic.com/firebasejs/5.9.4/firebase.js“></script>
+
+
+    <div class="component">
+        <button class="smartcmsht-button" id="smartcmsht-button">+</button>
+        <div class="smartcmsht-wrapper" id="smartcmsht-wrapper">
+            <ul>
+                <li><a href="login.html">Login <br><br><i class="fa fa-keyboard" aria-hidden="true"></i></span></a></a>
+                </li>
+                <li><a href="favorites.html">Favorites <br><br><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                <li><a href="index.html">Home<br><br><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li><a href="results.html">Search <br><br><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                <li><a href="blacklist.html">Blacklist <br><br><i class="fa fa-thumbs-down" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+
+
+        <div id="smartcmsht-overlay" class="smartcmsht-overlay"></div>
+    </div>
+    <div class="top"></div>
+
+    <script src="assets/javascript/polyfills.js"></script>
+    <script src="assets/javascript/fixed_bottom.js"></script>
     <script src="assets/javascript/app.js"></script>
+
 </body>
+
+</html>
