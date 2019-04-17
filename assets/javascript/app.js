@@ -59,7 +59,62 @@ $(document).ready(function(){
         }).then(function(response) {
             //let dbTestObject = {"name": response.businesses[2].name, "id": response.businesses[2].id};
             console.log(response)
+            for (let i = 0; i < response.businesses.length; i++) {
+                // Pull data for each of the restaurants
+                let name = response.businesses[i].name;
+                let rating = response.businesses[i].rating;
+                let reviewCount = response.businesses[i].review_count;
+                let price = response.businesses[i].price;
+                let ratingPath = "";
+                // determine which image to use for the yelp rating
+                switch (rating) {
+                    case 0:
+                        ratingPath = "assets/images/yelp_stars/large_0.png";
+                        break;
+                    case 1:
+                        ratingPath = "assets/images/yelp_stars/large_1.png";
+                        break;
+                    case 1.5:
+                        ratingPath = "assets/images/yelp_stars/large_1_half.png";
+                        break;
+                    case 2:
+                        ratingPath = "assets/images/yelp_stars/large_2.png";
+                        break;
+                    case 2.5:
+                        ratingPath = "assets/images/yelp_stars/large_2_half.png";
+                        break;
+                    case 3:
+                        ratingPath = "assets/images/yelp_stars/large_3.png";
+                        break;
+                    case 3.5:
+                        ratingPath = "assets/images/yelp_stars/large_3_half.png";
+                        break;
+                    case 4:
+                        ratingPath = "assets/images/yelp_stars/large_4.png";
+                        break;
+                    case 4.5:
+                        ratingPath = "assets/images/yelp_stars/large_4_half.png";
+                        break;
+                    case 5:
+                        ratingPath = "assets/images/yelp_stars/large_5.png";
+                        break;
+                  }
+                let profilePic = response.businesses[i].image_url;
+                let card = 
+                `<div class="card content-align-center">
+                    <img class="card-img-top" id="cardMapImg" style="width: 200px; height: 200px; padding: 10px;" src="${profilePic}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${name}</h5>
+                </div>
+                    <ul class="list-group list-group-flush"s>
+                        <li class="list-group-item" id="priceRange">${price}</li>
+                        <li class="list-group-item" id="rating"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
+                    </ul>
+                </div>`;
+                $("#search-results").append(card);
+            }
         });
+
     }
 
     buildCategories();
