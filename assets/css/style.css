@@ -9,6 +9,12 @@ body {
     margin-bottom: 1.25rem;
 }
 
+#strAdd {
+    font-size: 14px;
+    text-align: center;
+    margin: -.75rem;
+}
+
 .fa-thumbs-up {
     color: #17c400;
     padding-right: 15px;
@@ -35,6 +41,35 @@ h2 {
     margin: -.5em;
 }       
 
+.card, #priceRange, #rating {
+    background-color: rgb(252, 253, 156)
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+#name {
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+.pCard {
+    margin-bottom: 0px;
+}
+
+#priceRange {
+    padding-top: -1rem;
+    padding-bottom: -12px;
+}
+
+#rating {
+    padding-top: 0px;
+}
+
+.resultsBody {
+    background-color: lightcoral;
+}
 
 #list, #location-input {
     width: 100%;
@@ -89,6 +124,12 @@ h2 {
 .restaurant-map {
     width: .25vw; 
     height: .25vh;
+}
+
+.prices {
+    height: 25px;
+    margin-top: -1.5rem;
+    margin-bottom: -1.5rem;
 }
 
 .results-page {
