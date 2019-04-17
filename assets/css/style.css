@@ -9,6 +9,17 @@ body {
     margin-bottom: 1.25rem;
 }
 
+.fa-thumbs-up {
+    color: #17c400;
+    padding-right: 15px;
+    float: right;
+}
+
+.fa-thumbs-down {
+    color: #ff4343;
+    float: right;
+}
+
 /* .container {
     margin: 10px;
 } */
