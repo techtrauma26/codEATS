@@ -19,7 +19,9 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"> </script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -27,6 +29,22 @@
     <div class="page-header">
         <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
     </div>
+    <div class="topnav">
+        <a href="index.html" class="active"></a>
+       
+        <div id="myLinks">
+          <a href="profile.html">Profile</a>
+          <a href="login.html">Login</a>
+          <a href="results.html">Search</a>
+          <a href="favorites.html">Favorites</a>
+          <a href="blacklist.html">Blacklist</a>
+
+        </div>
+        
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
     <div class="container">
         <div class="category">
             <h2>
@@ -70,41 +88,125 @@
 
             <div class="container" id="filterList">
                 <div class="filter" id="price">
-                    Price
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" id="priceBtn" type="button" data-toggle="dropdown">Price
+                </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">$</a></li>
+                          <li><a href="#">$$</a></li>
+                          <li><a href="#">$$$</a></li>
+                          <li><a href="#">$$$$</a></li>
+                        </ul> 
+                      </div>
                 </div>
 
                 <div class="filter" id="access">
-                    Ease of Access
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" id="accessBtn" type="button" data-toggle="dropdown">Ease of Access
+                      </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#"> <5 miles </a></li>
+                          <li><a href="#"> 5-10 miles </a></li>
+                          <li><a href="#"> 10-15 miles </a></li>
+                          <li><a href="#"> >15 miles </a></li>
+                        </ul> 
+                      </div>
                 </div>
 
                 <div class="filter" id="stars">
-                    Stars
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" id="ratingBtn" type="button" data-toggle="dropdown">Rating
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#"> <5 miles </a></li>
+                          <li><a href="#"> 5-10 miles </a></li>
+                          <li><a href="#"> 10-15 miles </a></li>
+                          <li><a href="#"> >15 miles </a></li>
+                        </ul> 
+                      </div>
                 </div>
 
                 <div class="filter" id="alcohol">
-                    Alcohol
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" id="alcoholBtn" type="button" data-toggle="dropdown">Alcohol
+                   </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Yes</a></li>
+                          <li><a href="#">No</a></li>
+                          <li><a href="#">Doesn't matter</a></li>
+                        </ul> 
+                      </div>
                 </div>
 
 
                 <div class="filter" id="reservations">
-                    Reservations
+                    <div class="dropdown"></div>
+                        <button class="btn btn-primary dropdown-toggle" id="reservationsBtn" type="button" data-toggle="dropdown">Reservations
+                     </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Yes</a></li>
+                          <li><a href="#">No</a></li>
+                          <li><a href="#">Doesn't matter</a></li>
+                        </ul> 
+                      </div>
                 </div>
 
-                <div class="filter" id="price">
-                    Price
-                </div>
+                
             </div>
 
 
         </div>
 
+        
+    
+
+
+    <div class="container">
+        
+        <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-warning btn-lg" id="eat">EAT!</button>
-    </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Oops!!</h4>
+              </div>
+              <div class="modal-body">
+                <p>Please select a food category, location and filters to continue. </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+      
 
 
 
-
-
-    <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/app.js">
+// function for navbar //
+function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+      }
+// function for modal // needs fx if all selectors are validated then hide modal 
+    $(document).ready(function(){
+  $("#eat").click(function(){
+    $("#myModal").modal();
+  });
+});
+    </script>
     <!-- <script src="assets/javascript/location.js"></script> -->
 </body>
