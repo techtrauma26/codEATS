@@ -64,15 +64,12 @@ $(document).ready(function () {
             for (let i = 0; i < response.businesses.length; i++) {
                 // Pull data for each of the restaurants
                 let name = response.businesses[i].name;
-                let isClosed = response.businesses[i].is_closed
-                console.log("isClosed:",isClosed)
+                let isClosed = response.businesses[i].is_closed;
                     if (isClosed === false) {
                         openImg = "assets/images/open.png"
                     } else {
                         openImg = ""
                     };
-
-                    console.log("image:",openImg)
 
                 let phone = response.businesses[i].display_phone
                 let dialPhone = response.businesses[i].phone
@@ -203,6 +200,16 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 let name = response.name;
+                let isClosed = response.is_closed;
+                    if (isClosed === false) {
+                        openImg = "assets/images/open.png"
+                    } else {
+                        openImg = ""
+                    };
+                let phone = response.display_phone
+                let dialPhone = response.phone
+                let distanceRaw = response.distance
+                let distanceMi = (distanceRaw / 1600).toFixed(2);
                 let address1 = response.location.display_address[0];
                 let address2 = response.location.display_address[1]
                 let address3 = response.location.display_address[2];
@@ -273,10 +280,14 @@ $(document).ready(function () {
                     <img class="card-img-top" id="cardMapImg" style="width: 200px; height: 200px; padding: 10px;" src="${profilePic}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title" id="name" style="float: left;">${name}</h5><i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i><br><br>
-                    <p id="strAdd">${address}</p>
+                    <p class="restInfo" id="strAdd">${address}</p><br>
+                    <p class="restInfo"id="distance">Distance: ${distanceMi} mi</p>
+                    <p class="restInfo"id="phone"><a href="tel:${dialPhone}">${phone}</p>
+
+                    <div class="map" id="map"></div>
                 </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item" id="priceRange"><img class="prices" src=${pricePath} alt="price range (${price})"></li>
+                        <li class="list-group-item" id="priceRange"><img class="prices" src=${pricePath} alt="price range (${price})"><img id="open" src=${openImg} alt="open-${i}"></li>
                         <li class="list-group-item" id="rating"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
                     </ul>
                 </div>`;
