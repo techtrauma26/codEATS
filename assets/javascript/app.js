@@ -79,6 +79,9 @@ $(document).ready(function () {
                 let address1 = response.businesses[i].location.display_address[0];
                 let address2 = response.businesses[i].location.display_address[1]
                 let address3 = response.businesses[i].location.display_address[2];
+
+                let lat = response.businesses[i].coordinates.latitude;
+                let long = response.businesses[i].coordinates.longitude;
                 
                 if (address3 !== undefined) {
                     address = `${address1}, ${address2}, ${address3}`
@@ -145,13 +148,17 @@ $(document).ready(function () {
                 // create a bootstrap card and pass in variables for each restaurant
                 let card =
                     `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
-                    <img class="card-img-top" id="cardMapImg" style="width: 200px; height: 200px; padding: 10px;" src="${profilePic}" alt="Card image cap">
-                <div class="card-body">
+                    <div class= "row">
+                    <div class= "col-6">
+                    <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
+                    <div class= "col-6">
+                    <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14&size=100x100&maptype=roadmap&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
+                    </div> </div>
+                    <div class="card-body"> 
                     <h5 class="card-title" id="name" style="float: left;">${name}</h5><i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i><br><br>
                     <p class="restInfo" id="strAdd">${address}</p><br>
                     <p class="restInfo"id="distance">Distance: ${distanceMi} mi</p>
                     <p class="restInfo"id="phone"><a href="tel:${dialPhone}">${phone}</p>
-
                     <div class="map" id="map"></div>
                 </div>
                     <ul class="list-group list-group-flush">
@@ -173,7 +180,6 @@ $(document).ready(function () {
                 // use a connection string that takes the current user and a pathstring (either favorite or blacklist) to navigate to the correct part of the database.
                 snapshot.child(`users/${currentUser}/${pathString}`).forEach(function (userSnapshot) {
                     let listItemID = userSnapshot.val().id; // get the business ID for the API call
-                    console.log(listItemID)
                     let listItemCategory = userSnapshot.val().category; // get the category
                    
                     // if the category in the database matches the dropdown category, add that business ID to the list we will pull.
@@ -210,9 +216,14 @@ $(document).ready(function () {
                 let dialPhone = response.phone
                 let distanceRaw = response.distance
                 let distanceMi = (distanceRaw / 1600).toFixed(2);
+
                 let address1 = response.location.display_address[0];
                 let address2 = response.location.display_address[1]
                 let address3 = response.location.display_address[2];
+
+                let lat = response.coordinates.latitude;
+                let long = response.coordinates.longitude;
+
                 let reviewCount = response.review_count;
                 let price = response.price;
                 let rating = response.rating;
@@ -277,13 +288,17 @@ $(document).ready(function () {
                 // create a bootstrap card and pass in variables for each restaurant
                 let card =
                     `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
-                    <img class="card-img-top" id="cardMapImg" style="width: 200px; height: 200px; padding: 10px;" src="${profilePic}" alt="Card image cap">
-                <div class="card-body">
+                    <div class= "row">
+                    <div class= "col-6">
+                    <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
+                    <div class= "col-6">
+                    <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14&size=100x100&maptype=roadmap&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
+                    </div> </div>
+                    <div class="card-body"> 
                     <h5 class="card-title" id="name" style="float: left;">${name}</h5><i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i><br><br>
                     <p class="restInfo" id="strAdd">${address}</p><br>
                     <p class="restInfo"id="distance">Distance: ${distanceMi} mi</p>
                     <p class="restInfo"id="phone"><a href="tel:${dialPhone}">${phone}</p>
-
                     <div class="map" id="map"></div>
                 </div>
                     <ul class="list-group list-group-flush">
@@ -351,6 +366,7 @@ $(document).ready(function () {
         let currentLocation = "";
         let currentPrice = "";
         let currentRadius = 0;
+        let usingGeoLoc = false;
         // rough code for making a modal appear if minimum search criteria is not met.
 
         currentCategory = $("#list").val();
@@ -361,6 +377,8 @@ $(document).ready(function () {
 
         // check to see if geolocation marker is NOT checked. If not, we use text entry
         if ($("#geolocation").is(':checked')) {
+            usingGeoLoc = true;
+            //currentLocation = "GeoLoc";
         }
         else {
             currentLocation = $("#location-input").val().trim().toLowerCase(); // convert to lowercase and remove all extra spaces w/ trim
@@ -369,30 +387,30 @@ $(document).ready(function () {
                 currentLocation = "&location=" + currentLocation;
                 sessionStorage.setItem("location", currentLocation);
             }
-            else {
-                // *** should probably change this to a modal
-                currentLocation = "";
+        }
+        if (currentCategory === "Food Category" || (currentLocation === "" && usingGeoLoc === false)) {
+            $("#indexModal").modal();
+        }
+        else {
+            // *** make SMART later
+            // if current price is not undefined, grab from DOM. Else, insert empty string.
+            currentPrice = "&price=2";
+            sessionStorage.setItem("price", currentPrice);
+            //let currentPrice = $("#price").val();
+            if (currentPrice === undefined) {
+                currentPrice = ""; // insert a blank string so as to not modify the API call.
             }
-        }
-        // *** make SMART later
-        // if current price is not undefined, grab from DOM. Else, insert empty string.
-        currentPrice = "&price=2";
-        sessionStorage.setItem("price", currentPrice);
-        //let currentPrice = $("#price").val();
-        if (currentPrice === undefined) {
-            currentPrice = ""; // insert a blank string so as to not modify the API call.
-        }
-        // *** make SMART later
-        //let currentRadius = $("#radius").val();
-        currentRadius = "&radius=5000"
-        sessionStorage.setItem("radius", currentRadius);
-        if (currentRadius === undefined) {
-            currentRadius = "";
-        }
+            // *** make SMART later
+            //let currentRadius = $("#radius").val();
+            currentRadius = "&radius=5000"
+            sessionStorage.setItem("radius", currentRadius);
+            if (currentRadius === undefined) {
+                currentRadius = "";
+            }
 
-        // *** make sure it only takes them to the new page if the criteria are met.
-        window.location.href = ("results.html");
-
+            // *** make sure it only takes them to the new page if the criteria are met.
+            window.location.href = ("results.html");
+        }
     })
 
     // When changing the category list value on the favorites page, pass the category to a database search

@@ -59,7 +59,8 @@ $(document).ready(function(){
             window.location.href = ("index.html");
         }
         else {
-            alert("Your username was not found in our records. Please select a valid username!")
+            $("#loginModal").modal();
+            console.log("running")
         }
     })
 
