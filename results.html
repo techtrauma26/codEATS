@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -13,6 +13,8 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
+    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -21,19 +23,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
 
+
 </head>
 
-<body class= "resultsBody">
+<body class="resultsBody">
 
     <div class="page-header">
         <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
 
-      
-    </div>
-    <div id="search-results"></div>
 
- 
+    </div>
+    <div id="search-results">
+        <div id="map">
+        </div>
+    </div>
+
+
     <script src="assets/javascript/app.js"></script>
+   
 
 </body>
 

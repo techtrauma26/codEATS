@@ -9,10 +9,25 @@ body {
     margin-bottom: 1.25rem;
 }
 
-#strAdd {
+.restInfo {
     font-size: 14px;
     text-align: center;
     margin: -.75rem;
+}
+
+#priceRange{
+    border-top: 1px gray;
+}
+
+#distance {
+    float: left;
+    padding-left: 1.5rem;
+}
+
+#phone {
+    float: right;
+    padding-right: 1.5rem;
+    /* padding-bottom: 1rem; */
 }
 
 .fa-thumbs-up {
@@ -95,6 +110,13 @@ h2 {
     font-weight: bold;
     text-align: center;
 }
+
+#open {
+    float: right;
+    height: 15%;
+    width: 15%
+}
+
 
 /* #filterList {
     /* padding: .1rem; */
