@@ -89,14 +89,8 @@ $(document).ready(function () {
                     address = `${address1}, ${address2}`
                 };
 
-<<<<<<< HEAD
-                console.log("address:", address)
-=======
-                // console.log("address:", address)
->>>>>>> 4cc2916696bfda477993ea347ac7b0168d4b74c7
                 let reviewCount = response.businesses[i].review_count;
                 let price = response.businesses[i].price;
-                console.log("price:", price)
                 let rating = response.businesses[i].rating;
                 let businessID = response.businesses[i].id;
                 let pricePath = "";
@@ -174,7 +168,6 @@ $(document).ready(function () {
 
     }
 
-<<<<<<< HEAD
     function userList(pathString, foodCategory, foodCategoryAPI) {
         rootReference.once("value") // pulls data one time 
             .then(function (snapshot) {
@@ -327,95 +320,6 @@ $(document).ready(function () {
         if ($("#geolocation").is(':checked')) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(userPosition);
-=======
-    buildCategories();
-    // If we are on the search page, perform the API call.
-    if (currentPage === "results.html") {
-        search();
-    }
-
-    // Push a restaurant to your favorites list if you hit the thumbs up button
-    $("#search-results").on("click", ".fa-thumbs-up", function () {
-        // gather the necessary data packet from parent attributes.
-        let favoriteName = $(this).parent().parent().attr("businessname");
-        let favoriteBusinessID = $(this).parent().parent().attr("businessid");
-        let favoriteCatgeory = $(this).parent().parent().attr("category");
-        // construct an object to pass to the database.
-        let favoriteObject = { "name": favoriteName, "id": favoriteBusinessID, "category": favoriteCatgeory };
-        // push the new favorite object to the database.
-        pushFavorite(favoriteObject);
-    })
-
-    $("#geolocation").on("click", function () {
-        if ($("#geolocation").is(':checked')) {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(userPosition);
-
-                function userPosition(position) {
-                    let latitude = position.coords.latitude;
-                    let longitude = position.coords.longitude;
-                    currentLocation = `&latitude=${latitude}&longitude=${longitude}`;
-                    sessionStorage.setItem("location", currentLocation);
-                }
-            }
-            else {
-                alert("Geolocation functionality is not supported by your browser. Please type in a location.")
-            }
-        }
-    })
-
-    $("#eat").on("click", function () {
-        // clear variables
-        let currentCategory = "";
-        let currentLocation = "";
-        let currentPrice = "";
-        let currentRadius = 0;
-        // rough code for making a modal appear if minimum search criteria is not met.
-
-        currentCategory = $("#list").val();
-        if (currentCategory !== "Food Category") {
-            currentCategory = currentCategory.toLowerCase() + "+food";
-            sessionStorage.setItem("category", currentCategory); // store variable in session data to use on search page
-        }
-
-        // check to see if geolocation marker is NOT checked. If not, we use text entry
-        if ($("#geolocation").is(':checked')) {
-        }
-        else {
-            currentLocation = $("#location-input").val().trim().toLowerCase(); // convert to lowercase and remove all extra spaces w/ trim
-            currentLocation = currentLocation.replace(/\s/g, "+"); // remove all spaces from input and replace with + (so it will work with api)
-            if (currentLocation.trim() !== undefined && currentLocation.trim() !== "") {
-                currentLocation = "&location=" + currentLocation;
-                sessionStorage.setItem("location", currentLocation);
-            }
-            else {
-                // *** should probably change this to a modal
-                currentLocation = "";
-            }
-        }
-        // *** make SMART later
-        // if current price is not undefined, grab from DOM. Else, insert empty string.
-        currentPrice = "&price=1";
-        sessionStorage.setItem("price", currentPrice);
-        //let currentPrice = $("#price").val();
-        if (currentPrice === undefined) {
-            currentPrice = ""; // insert a blank string so as to not modify the API call.
-        }
-        // *** make SMART later
-        //let currentRadius = $("#radius").val();
-        currentRadius = "&radius=5000"
-        sessionStorage.setItem("radius", currentRadius);
-        if (currentRadius === undefined) {
-            currentRadius = "";
-        }
-
-        // *** make sure it only takes them to the new page if the criteria are met.
-        window.location.href = ("results.html");
-
-    })
-
-    // ========= Testing below
->>>>>>> 4cc2916696bfda477993ea347ac7b0168d4b74c7
 
                 function userPosition(position) {
                     let latitude = position.coords.latitude;
@@ -475,7 +379,6 @@ $(document).ready(function () {
             currentRadius = "";
         }
 
-<<<<<<< HEAD
         // *** make sure it only takes them to the new page if the criteria are met.
         window.location.href = ("results.html");
 
@@ -497,48 +400,5 @@ $(document).ready(function () {
         foodCategory = foodCategoryAPI.toLowerCase() + "+food";
         userList("blacklist", foodCategory, foodCategoryAPI);
     })
-
-=======
-    // *** pulling data one time most for testing. Later, we will need to update this each time you load the lists
-    rootReference.once("value") // pulls data one time 
-        .then(function (snapshot) {
-            // returns the array of objects in the users/name/favorites section
-            let favoritesList = snapshot.child(`users/${currentUser}/favorites`).val();
-            let blackList = snapshot.child(`users/${currentUser}/blacklist`).val();
-
-            // This section of code loops through each item in the favorites list and appends it to a list.
-            snapshot.child(`users/${currentUser}/favorites`).forEach(function (favoriteSnapshot) {
-                let listItemText = favoriteSnapshot.val().name;
-                let listItemID = favoriteSnapshot.val().id;
-
-                let listItem = $("<li>");
-                listItem.text(listItemText);
-                listItem.attr("id", listItemID);
-                // *** uncomment once we have an ID from front end team
-                // $("#content").append(listItem);
-
-            })
-        });
-
-    // Initialize the platform object:
-//     var platform = new H.service.Platform({
-//         'app_id': '{dvLccvAou7nT9tE8cye8}',
-//         'app_code': '{czCIkQ__dhmMRcg92ktOq}'
-//       });
-//       // Retrieve the target element for the map:
-//       var targetElement = document.getElementById('map');
-      
-//       // Get the default map types from the platform object:
-//       var defaultLayers = platform.createDefaultLayers();
-
-// // Instantiate (and display) a map object:
-// // var map = new H.Map(
-// //   document.getElementById('mapContainer'),
-// //   defaultLayers.normal.map,
-// //   {
-// //     zoom: 10,
-// //     center: { lat: 52.5, lng: 13.4 }
-// //   });
     
->>>>>>> 4cc2916696bfda477993ea347ac7b0168d4b74c7
 });
