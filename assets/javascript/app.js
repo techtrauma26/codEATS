@@ -67,10 +67,11 @@ $(document).ready(function () {
                 // Pull data for each of the restaurants
                 let name = response.businesses[i].name;
                 let isClosed = response.businesses[i].is_closed;
+                console.log("closed?",response.businesses[i].is_closed)
                     if (isClosed === false) {
                         openImg = "assets/images/open.png"
                     } else {
-                        openImg = ""
+                        openImg = "assets/images/closed.png"
                     };
 
                 let phone = response.businesses[i].display_phone
@@ -149,25 +150,41 @@ $(document).ready(function () {
                 let profilePic = response.businesses[i].image_url;
                 // create a bootstrap card and pass in variables for each restaurant
                 let card =
-                    `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
-                    <div class= "row">
-                    <div class= "col-6">
-                    <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
-                    <div class= "col-6">
-                    <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14&size=100x100&maptype=roadmap&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
-                    </div> </div>
-                    <div class="card-body"> 
-                    <h5 class="card-title" id="name" style="float: left;">${name}</h5><i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i><br><br>
-                    <p class="restInfo" id="strAdd">${address}</p><br>
-                    <p class="restInfo"id="distance">Distance: ${distanceMi} mi</p>
-                    <p class="restInfo"id="phone"><a href="tel:${dialPhone}">${phone}</p>
-                    <div class="map" id="map"></div>
+                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
+                <div class= "row">
+                <div class= "col-6">
+                <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
+                <div class= "col-6">
+                <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
+                </div> </div>
+                <div class="card-body"> 
+                <div class= "row">
+                    <div class= "col-9 card-title" id="card-name">
+                        <h5 class="card-title" id="name" style="float: left;">${name}</h5>
+                    </div>
+                    <div class= "col-3">
+                        <i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i>
+                    </div>
                 </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" id="priceRange"><img class="prices" src=${pricePath} alt="price range (${price})"><img id="open" src=${openImg} alt="open-${i}"></li>
-                        <li class="list-group-item" id="rating"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
-                    </ul>
-                </div>`;
+                <div class= "row">
+                    <div class= "col-12 restInfo">
+                        <p class="restInfo" id="strAdd">${address}</p>
+                    </div>
+                </div>
+                <div class= "row">
+                    <div class= "col-6 restInfo">
+                        <p class="restInfo"id="distance">Distance: ${distanceMi} mi</p>
+                    </div>
+                    <div class= "col-6 restInfo">
+                        <p class="restInfo"id="phone"><a href="tel:${dialPhone}">${phone}</p>
+                    </div>
+                </div>            
+            </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" id="priceRange"><img class="prices" src=${pricePath} alt="price range (${price})"><img id="open" src=${openImg} alt="open-${i}"></li>
+                    <li class="list-group-item" id="rating"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
+                </ul>
+            </div>`;
                 $("#search-results").append(card);
             }
         });
