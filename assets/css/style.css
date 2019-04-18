@@ -86,7 +86,7 @@ h2 {
     background-color: lightcoral;
 }
 
-#list, #location-input {
+#list, #location-input, #favoriteDropdown, #blacklistDropdown {
     width: 100%;
     height: auto;
     text-align: center;
