@@ -46,6 +46,15 @@ $(document).ready(function () {
         database.ref(`users/${currentUser}/blacklist`).push(blacklistObject);
     }
 
+    function navbar() {
+        var modal = document.getElementById("myLinks");
+        if (modal.style.display === "block") {
+          modal.style.display = "none";
+        } else {
+          modal.style.display = "block";
+        }
+      }
+
     // the function that performs the yelp API call using data established by the user on the index.html page.
     function search() {
         let category = sessionStorage.getItem("category");
@@ -224,6 +233,7 @@ $(document).ready(function () {
                     "Authorization": `Bearer ${apiKey}`
                 }
             }).then(function (response) {
+                console.log(response)
                 let name = response.name;
                 let isClosed = response.is_closed;
                     if (isClosed === false) {
@@ -341,30 +351,86 @@ $(document).ready(function () {
     // Event Listener Functions ===================================
     // ============================================================
 
+    // THUMBS UP
     // Push a restaurant to your favorites list if you hit the thumbs up button
     $("#search-results").on("click", ".fa-thumbs-up", function () {
-        // gather the necessary data packet from parent attributes.
-        let favoriteName = $(this).parent().parent().attr("businessname");
-        let favoriteBusinessID = $(this).parent().parent().attr("businessid");
-        let favoriteCatgeory = $(this).parent().parent().attr("category");
-        // construct an object to pass to the database.
-        let favoriteObject = { "name": favoriteName, "id": favoriteBusinessID, "category": favoriteCatgeory };
-        // push the new favorite object to the database.
-        $("#favorite-alert").fadeTo(2000, 500).slideUp(500, function(){
-            $("#favorite-alert").slideUp(500);
-            });   
-        pushFavorite(favoriteObject);
+        // check to see if the user is logged in before they try to favorite something.
+        if (currentUser === null) {
+            $("#favoriteLoginModal").modal();
+        }
+        // if they are logged in, carry on with event listener function.
+        else {
+            // gather the necessary data packet from parent attributes.
+            let favoriteName = $(this).parent().parent().attr("businessname");
+            let favoriteBusinessID = $(this).parent().parent().attr("businessid");
+            let favoriteCatgeory = $(this).parent().parent().attr("category");
+            let businessIdList = [];
+            let alreadyInList = false;
+
+            rootReference.once("value") // pulls data one time from the database
+            // get a list of the items from you favorite list and see if the business ID matches the one you are trying to favorite.
+            .then(function (snapshot) {
+                snapshot.child(`users/${currentUser}/favorites`).forEach(function (userSnapshot) {
+                    let listItemID = userSnapshot.val().id;
+                    businessIdList.push(listItemID);
+                    if (favoriteBusinessID === listItemID) {
+                        alreadyInList = true;
+                    }
+                    
+                })
+                if (alreadyInList === false) {
+                    // construct an object to pass to the database.
+                    let favoriteObject = { "name": favoriteName, "id": favoriteBusinessID, "category": favoriteCatgeory };
+                    // push the new favorite object to the database.
+                    $("#favorite-alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#favorite-alert").slideUp(500);
+                        });   
+                    pushFavorite(favoriteObject);
+                } 
+                else {
+                    alert("This was already in the favorites list")
+                }
+            });
+            // If we searched the database and did not find an ID already in the list, continue with database push.
+        }
     });
+    // THUMBS DOWN
     // same function as above, but for blacklisting a restaurant
     $("#search-results").on("click", ".fa-thumbs-down", function () {
-        let blacklistName = $(this).parent().parent().attr("businessname");
-        let blacklistBusinessID = $(this).parent().parent().attr("businessid");
-        let blacklistCatgeory = $(this).parent().parent().attr("category");
-        let blacklistObject = { "name": blacklistName, "id": blacklistBusinessID, "category": blacklistCatgeory };
-        $("#blacklist-alert").fadeTo(2000, 500).slideUp(500, function(){
-            $("#blacklist-alert").slideUp(500);
-            });   
-        pushBlacklist(blacklistObject);
+        if (currentUser === null) {
+            $("#favoriteLoginModal").modal();
+        }
+        else {
+            let blacklistName = $(this).parent().parent().attr("businessname");
+            let blacklistBusinessID = $(this).parent().parent().attr("businessid");
+            let blacklistCatgeory = $(this).parent().parent().attr("category");
+            let businessIdList = [];
+            let alreadyInList = false;
+
+            rootReference.once("value") // pulls data one time from the database
+            // get a list of the items from you favorite list and see if the business ID matches the one you are trying to favorite.
+            .then(function (snapshot) {
+                snapshot.child(`users/${currentUser}/blacklist`).forEach(function (userSnapshot) {
+                    let listItemID = userSnapshot.val().id;
+                    businessIdList.push(listItemID);
+                    if (blacklistBusinessID === listItemID) {
+                        alreadyInList = true;
+                    }
+                    
+                })
+                if (alreadyInList === false) {
+                    // construct an object to pass to the database.
+                    let blacklistObject = { "name": blacklistName, "id": blacklistBusinessID, "category": blacklistCatgeory };
+                    $("#blacklist-alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#blacklist-alert").slideUp(500);
+                        });   
+                    pushBlacklist(blacklistObject);
+                } 
+                else {
+                    alert("This was already in the blacklist")
+                }
+            });
+        }
     });
 
     $("#geolocation").on("click", function () {
