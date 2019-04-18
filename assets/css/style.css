@@ -12,7 +12,7 @@ body {
 .restInfo {
     font-size: 14px;
     text-align: center;
-    margin: -.75rem;
+    margin: 0rem;
 }
 
 #priceRange{
@@ -67,7 +67,17 @@ h2 {
 #name {
     margin-bottom: 0px;
     font-weight: bold;
+
 }
+
+#card-name {
+    text-align: center;
+}
+
+.card-title {
+    margin-bottom: .25rem;
+}
+
 
 .pCard {
     margin-bottom: 0px;
@@ -143,9 +153,10 @@ h2 {
     
 }
 
-.restaurant-map {
-    width: .25vw; 
-    height: .25vh;
+.map {
+    width: 100%; 
+    height: auto;
+    padding: .5rem;
 }
 
 .prices {
@@ -157,8 +168,8 @@ h2 {
 .results-page {
     background-color: rgb(250, 252, 147)
 }
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
+/* body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;} */
 
 input[type=text], input[type=password] {
   width: 100%;
