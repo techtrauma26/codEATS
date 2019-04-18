@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    $("#favorite-alert").hide();
+    $("#blacklist-alert").hide();
     // Load the current user from session storage
     let currentUser = sessionStorage.getItem("username");
     let currentPage = window.location.href.split("/").pop();
@@ -331,16 +333,22 @@ $(document).ready(function () {
         // construct an object to pass to the database.
         let favoriteObject = { "name": favoriteName, "id": favoriteBusinessID, "category": favoriteCatgeory };
         // push the new favorite object to the database.
+        $("#favorite-alert").fadeTo(2000, 500).slideUp(500, function(){
+            $("#favorite-alert").slideUp(500);
+            });   
         pushFavorite(favoriteObject);
-    })
+    });
     // same function as above, but for blacklisting a restaurant
     $("#search-results").on("click", ".fa-thumbs-down", function () {
         let blacklistName = $(this).parent().parent().attr("businessname");
         let blacklistBusinessID = $(this).parent().parent().attr("businessid");
         let blacklistCatgeory = $(this).parent().parent().attr("category");
         let blacklistObject = { "name": blacklistName, "id": blacklistBusinessID, "category": blacklistCatgeory };
+        $("#blacklist-alert").fadeTo(2000, 500).slideUp(500, function(){
+            $("#blacklist-alert").slideUp(500);
+            });   
         pushBlacklist(blacklistObject);
-    })
+    });
 
     $("#geolocation").on("click", function () {
         if ($("#geolocation").is(':checked')) {
@@ -428,6 +436,5 @@ $(document).ready(function () {
         let foodCategoryAPI = foodCategory.toLowerCase();
         foodCategory = foodCategoryAPI.toLowerCase() + "+food";
         userList("blacklist", foodCategory, foodCategoryAPI);
-    })
-    
+    });
 });
