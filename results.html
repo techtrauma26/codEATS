@@ -13,8 +13,10 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
-    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-core.js"
+        type="text/javascript" charset="utf-8"></script>
+    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-service.js"
+        type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -37,43 +39,84 @@
         Restaurant added to Favorites list.
     </div>
     <div class="alert alert-danger" id="blacklist-alert" style="position: fixed; margin-top: 100px; z-index: 10;">
-            <button type="button" class="close" data-dismiss="alert">x</button>
-            <strong>Blacklisted! </strong>
-            This won't show up in search results anymore.
-        </div>
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Blacklisted! </strong>
+        This won't show up in search results anymore.
+    </div>
 
     <div class="page-header">
         <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
 
     </div>
     <div id="search-results">
+        <!-- Favorite/Blacklist Login Error Modal -->
+        <div class="modal fade" id="favoriteLoginModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Uh Oh!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are not currently logged in. Please head to the <a href="login.html">Login Page</a> to
+                            sign in and enable Favoriting and Blacklisting restaurants.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Already in Favorites Modal -->
+        <div class="modal fade" id="favoriteExistsModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Yum!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>This restaurant is already in your Favorites List!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Already in Blacklist Modal -->
+        <div class="modal fade" id="blacklistExistsModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Gross!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>This restaurant is already in your Blacklist!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
         <div id="map">
         </div>
     </div>
 
-    <!-- Favorite/Blacklist Login Error Modal -->
-    <div class="modal fade" id="favoriteLoginModal" role="dialog">
-            <div class="modal-dialog">
-            
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Uh Oh!</h4>
-                </div>
-                <div class="modal-body">
-                  <p>You are not currently logged in. Please head to the <a href="login.html">Login Page</a> to sign in and enable Favoriting and Blacklisting restaurants.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-
 
     <script src="assets/javascript/app.js"></script>
-   
+
 
 </body>
 
