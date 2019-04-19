@@ -63,7 +63,7 @@ $(document).ready(function () {
         let price = sessionStorage.getItem("price");
         let radius = sessionStorage.getItem("radius");
         let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${category}${location}${price}${radius}`;
-        console.log(queryURL)
+        //console.log(queryURL)
 
         $.ajax({
             url: queryURL,
@@ -72,7 +72,7 @@ $(document).ready(function () {
                 "Authorization": `Bearer ${apiKey}`
             }
         }).then(function (response) {
-            console.log(response)
+            //console.log(response)
             for (let i = 0; i < response.businesses.length; i++) {
                 // Pull data for each of the restaurants
                 let name = response.businesses[i].name;
@@ -159,12 +159,12 @@ $(document).ready(function () {
                 let profilePic = response.businesses[i].image_url;
                 // create a bootstrap card and pass in variables for each restaurant
                 let card =
-                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
+                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
                 <div class= "row">
                 <div class= "col-6">
                 <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
                 <div class= "col-6">
-                <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
+                <img id="mapSelector" class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
                 </div> </div>
                 <div class="card-body"> 
                 <div class= "row">
@@ -232,7 +232,7 @@ $(document).ready(function () {
                     "Authorization": `Bearer ${apiKey}`
                 }
             }).then(function (response) {
-                console.log(response)
+                // console.log(response)
                 let name = response.name;
                 let isClosed = response.is_closed;
                     if (isClosed === false) {
@@ -315,12 +315,12 @@ $(document).ready(function () {
                 let profilePic = response.image_url;
                 // create a bootstrap card and pass in variables for each restaurant
                 let card =
-                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
+                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
                 <div class= "row">
                 <div class= "col-6">
                 <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
                 <div class= "col-6">
-                <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
+                <img id="mapSelector" class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
                 </div> </div>
                 <div class="card-body"> 
                 <div class= "row">
@@ -375,6 +375,40 @@ $(document).ready(function () {
     // ============================================================
     // Event Listener Functions ===================================
     // ============================================================
+
+    // Directions API
+    $("#search-results").on("click", "#mapSelector", function (){
+        // get the geolocation latitude and longitude from checkbox function if available.
+        let userLong = sessionStorage.getItem("geoLocLong");
+        let userLat = sessionStorage.getItem("geoLocLat");
+        //console.log(userLong, userLat)
+        // get the lat and long of the restaurant in question from the div parent attributes.
+        let longitude = $(this).parent().parent().parent().attr("long");
+        let latitude = $(this).parent().parent().parent().attr("lat");
+        // if the user selected geolocation, we will pass it in as the 
+        if (userLong !== null && userLat !== null) {
+            let userLocString = `&saddr=${userLat},${userLong}`
+            // if we're on iOS, open in Apple Maps 
+            if ((navigator.platform.indexOf("iPhone") != -1) || (navigator.platform.indexOf("iPad") != -1) || (navigator.platform.indexOf("iPod") != -1)) {
+                window.open(`maps://maps.google.com/maps/dir/?daddr=${latitude},${longitude}${userLocString}&amp;ll=`);
+            }
+            // else use Google
+            else {
+                window.open(`https://maps.google.com/maps/dir/?daddr=${latitude},${longitude}${userLocString}&amp;ll=`);
+            }
+        }
+        else {
+            // if we're on iOS, open in Apple Maps 
+            if ((navigator.platform.indexOf("iPhone") != -1) || (navigator.platform.indexOf("iPad") != -1) || (navigator.platform.indexOf("iPod") != -1)) {
+                window.open(`maps://maps.google.com/maps/dir/?daddr=${latitude},${longitude}&amp;ll=`);
+            }
+            // else use Google
+            else {
+                window.open(`https://maps.google.com/maps/dir/?daddr=${latitude},${longitude}&amp;ll=`);
+            }
+        }
+
+    })
 
     // THUMBS UP
     // Push a restaurant to your favorites list if you hit the thumbs up button
@@ -467,6 +501,8 @@ $(document).ready(function () {
                     let latitude = position.coords.latitude;
                     let longitude = position.coords.longitude;
                     currentLocation = `&latitude=${latitude}&longitude=${longitude}`;
+                    sessionStorage.setItem("geoLocLat", latitude);
+                    sessionStorage.setItem("geoLocLong", longitude);
                     sessionStorage.setItem("location", currentLocation);
                 }
             }
