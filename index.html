@@ -65,8 +65,8 @@
             <a class="nav-link" href="favorites.html">Favorites</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="blacklist.html">Banned</a>
-            </li>
+            <a class="nav-link" href="blacklist.html">Banned</a>
+          </li>
         </ul>
         <!-- Links -->
 
@@ -165,22 +165,39 @@
   </div>
 
 
-
-
-
-
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-warning btn-lg" id="eat">EAT!</button>
-  <!-- Modal -->
-
-
-
-
-
-
   <script src="assets/javascript/app.js"></script>
 
+  <div class="container">
 
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-warning btn-lg" id="eat">EAT!</button>
+    <!-- Modal -->
+    <div class="modal fade" id="indexModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Oops!</h4>
+          </div>
+          <div class="modal-body">
+            <p>Please select a food <b>category</b>, and a <b>location</b> to continue. </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <script>
+    $(document).ready(function () {
+      $("#eat").click(function () {
+        $("#myModal").modal();
+      });
+    });</script>
 </body>
 
 </html>
