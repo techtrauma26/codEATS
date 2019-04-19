@@ -26,6 +26,9 @@
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 
+  <!-- WHEELNAV.JS- This shit better work this time -->
+  <script src="https://cdn.jsdelivr.net/npm/wheelnav@1.7.1/js/dist/raphael.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/wheelnav@1.7.1/js/dist/wheelnav.min.js"></script>
 
 </head>
 
@@ -118,9 +121,31 @@
         Meal-terial Matters
       </h2>
 
-      <!-- <div class="container" id="filterList">
+    </div>
+    <div class="container justify-content-center">
+
+    </div>
+    <div class="filterWheel d-flex justify-content-center">
+      <h3>Price</h3>
+    </div>
+    <div id="divWheelnav" class="wheelNav"></div>
+    <div class="filterWheel d-flex justify-content-center">
+      <h3>Rating</h3>
+    </div>
+    <div id="divWheelnav2" class="wheelNav2"></div>
+    <div class="filterWheel d-flex justify-content-center">
+      <h3>Distance</h3>
+    </div>
+
+    <div id="divWheelnav3" class="wheelNav2"></div>
+    <div class="filterWheel d-flex justify-content-center">
+
+    </div>
+  </div>
+
+  <!-- <div class="container" id="filterList">
         <div class="filter" id="price"> -->
-      <div class="dropdown">
+  <!-- <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Price
@@ -162,8 +187,9 @@
     </div>
 
 
-  </div>
+  </div> -->
 
+  <script src="assets/javascript/wheel.js"></script>
 
   <script src="assets/javascript/app.js"></script>
 

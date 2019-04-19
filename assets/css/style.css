@@ -25,16 +25,33 @@ body {
     background-color: white;
 }
 
+svg {
+    width: 350px;
+    height: 350px;
+    color: #a90e15;
+    font-size: x-large;
+    text-align: center;
+    /* margin: -5rem auto -5rem auto; */
+  
+    /* opacity: .75; */
+}
+
 .navvy {
     text-align: center;
     margin: 0 auto;
     background-color: rgb(255,201,14) !important;
-    color: rgb(169,14,21) !important;
+    color: #a90e15 !important;
     font-weight: bold;
     text-shadow: 2px 2px darkorange !important;
 
 }
 
+.wheels {
+    text-align: center;
+}
+.data-wheelnav-navitemtext {
+    color: rgb(255,201,14) !important;
+}
 .category {
     padding-top: .5rem;
 }
@@ -95,14 +112,17 @@ body {
 h2 {
     font-weight: bold;
 }
-.category, .location, .filters {
+.category, .location, .filters, .filterWheel {
     color: rgb(169,14,21);
-    text-shadow: 2px 2px rgb(255,201,14);
+    text-shadow: 2px 2px #ffc90e;
     font-weight: bold;
     text-align: center;
     margin: -.5em;
 }       
 
+.filterWheel {
+    margin: 0;
+}
 .card, #priceRange, #rating {
     background-color: rgb(252, 253, 156)
 }
@@ -165,7 +185,7 @@ h2 {
 }
 
 .filter {
-    color: darkorange;
+    color: #ff8000;
     text-shadow: 1px 1px rgb(255,201,14);
     font-size: x-large;
     font-weight: bold;
