@@ -238,7 +238,7 @@ $(document).ready(function () {
                     if (isClosed === false) {
                         openImg = "assets/images/open.png"
                     } else {
-                        openImg = ""
+                        openImg = "assets/images/closed.png"
                     };
                 let phone = response.display_phone
                 let dialPhone = response.phone
