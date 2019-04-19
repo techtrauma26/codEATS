@@ -508,7 +508,7 @@ $(document).ready(function () {
             $("#indexModal").modal();
         }
         else {
-            // *** make SMART later
+            // *** make SMART later!
             // if current price is not undefined, grab from DOM. Else, insert empty string.
             currentPrice = "&price=2";
             sessionStorage.setItem("price", currentPrice);
