@@ -413,7 +413,7 @@ $(document).ready(function () {
                     pushFavorite(favoriteObject);
                 } 
                 else {
-                    alert("This was already in the favorites list")
+                    $("#favoriteExistsModal").modal();
                 }
             });
             // If we searched the database and did not find an ID already in the list, continue with database push.
@@ -452,7 +452,7 @@ $(document).ready(function () {
                     pushBlacklist(blacklistObject);
                 } 
                 else {
-                    alert("This was already in the blacklist")
+                    $("#blacklistExistsModal").modal();
                 }
             });
         }
