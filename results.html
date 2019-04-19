@@ -56,16 +56,16 @@
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Search</a>
+                        <a class="nav-link" href="index.html">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Favorites</a>
+                        <a class="nav-link" href="favorites.html">Favorites</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Banned</a>
+                        <a class="nav-link" href="blacklist.html">Banned</a>
                     </li>
                 </ul>
                 <!-- Links -->
@@ -93,80 +93,81 @@
 
 
 
-    <div id="search-results">
-        <!-- Favorite/Blacklist Login Error Modal -->
-        <div class="modal fade" id="favoriteLoginModal" role="dialog">
-            <div class="modal-dialog">
+        <div id="search-results">
+            <!-- Favorite/Blacklist Login Error Modal -->
+            <div class="modal fade" id="favoriteLoginModal" role="dialog">
+                <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Uh Oh!</h4>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Uh Oh!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>You are not currently logged in. Please head to the <a href="login.html">Login Page</a>
+                                to
+                                sign in and enable Favoriting and Blacklisting restaurants.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <p>You are not currently logged in. Please head to the <a href="login.html">Login Page</a> to
-                            sign in and enable Favoriting and Blacklisting restaurants.</p>
+
+                </div>
+            </div>
+
+            <!-- Already in Favorites Modal -->
+            <div class="modal fade" id="favoriteExistsModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Yum!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>This restaurant is already in your Favorites List!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+            <!-- Already in Blacklist Modal -->
+            <div class="modal fade" id="blacklistExistsModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Gross!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>This restaurant is already in your Blacklist!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div id="map">
+            </div>
+            <div class="d-flex flex">
+
+                <div id="search-results">
+                    <div id="map">
                     </div>
                 </div>
 
             </div>
-        </div>
 
-        <!-- Already in Favorites Modal -->
-        <div class="modal fade" id="favoriteExistsModal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Yum!</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>This restaurant is already in your Favorites List!</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- Already in Blacklist Modal -->
-        <div class="modal fade" id="blacklistExistsModal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Gross!</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>This restaurant is already in your Blacklist!</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div id="map">
-        </div>
-        <div class="d-flex flex">
-
-            <div id="search-results">
-                <div id="map">
-                </div>
-            </div>
-
-        </div>
-
-        <script src="assets/javascript/app.js"></script>
+            <script src="assets/javascript/app.js"></script>
 
 
 
