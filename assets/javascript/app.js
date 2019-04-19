@@ -9,6 +9,7 @@ $(document).ready(function () {
     // *** Need to make this publicly hidden later
     let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
     const categoriesList = ["American", "BBQ", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Thai", "Mediterranean", "Vegetarian", "Doughnuts"];
+    let noResults = true;
 
     // ============================================================
     // FIREBASE Initialization ====================================
@@ -76,7 +77,6 @@ $(document).ready(function () {
                 // Pull data for each of the restaurants
                 let name = response.businesses[i].name;
                 let isClosed = response.businesses[i].is_closed;
-                console.log("closed?",response.businesses[i].is_closed)
                     if (isClosed === false) {
                         openImg = "assets/images/open.png"
                     } else {
@@ -211,7 +211,7 @@ $(document).ready(function () {
                     let listItemCategory = userSnapshot.val().category; // get the category
                    
                     // if the category in the database matches the dropdown category, add that business ID to the list we will pull.
-                    if (listItemCategory === `${foodCategory}`) { 
+                    if (listItemCategory === `${foodCategory}` || foodCategory === "All Favorites" || foodCategory === "All Blacklisted") { 
                         businessIdList.push(listItemID);
                     }
                 })
@@ -225,7 +225,6 @@ $(document).ready(function () {
 
             let businessID = businessIdList[i];
             let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${businessID}`;
-
             $.ajax({
                 url: queryURL,
                 method: "GET",
@@ -338,8 +337,18 @@ $(document).ready(function () {
                 $("#search-results").append(card);
             });
         }
+        if (businessIdList.length < 1 || businessIdList === undefined) {
+            $("#search-results").append("<h4 class='text-center' style='color: darkgray; padding-top: 30px;'>No results to display for this Category!</h4>");
+        }
     }
 
+    // If we are on blacklist or favorite, add an extra catgory to the list
+    if (currentPage === "favorites.html") {
+        categoriesList.unshift("All Favorites");
+    }
+    if (currentPage === "blacklist.html") {
+        categoriesList.unshift("All Blacklisted");
+    }
     // run the buildCategories function by default
     buildCategories();
     // If we are on the search page, perform the API call.
@@ -361,9 +370,9 @@ $(document).ready(function () {
         // if they are logged in, carry on with event listener function.
         else {
             // gather the necessary data packet from parent attributes.
-            let favoriteName = $(this).parent().parent().attr("businessname");
-            let favoriteBusinessID = $(this).parent().parent().attr("businessid");
-            let favoriteCatgeory = $(this).parent().parent().attr("category");
+            let favoriteName = $(this).parent().parent().parent().parent().attr("businessname");
+            let favoriteBusinessID = $(this).parent().parent().parent().parent().attr("businessid");
+            let favoriteCatgeory = $(this).parent().parent().parent().parent().attr("category");
             let businessIdList = [];
             let alreadyInList = false;
 
@@ -401,9 +410,9 @@ $(document).ready(function () {
             $("#favoriteLoginModal").modal();
         }
         else {
-            let blacklistName = $(this).parent().parent().attr("businessname");
-            let blacklistBusinessID = $(this).parent().parent().attr("businessid");
-            let blacklistCatgeory = $(this).parent().parent().attr("category");
+            let blacklistName = $(this).parent().parent().parent().parent().attr("businessname");
+            let blacklistBusinessID = $(this).parent().parent().parent().parent().attr("businessid");
+            let blacklistCatgeory = $(this).parent().parent().parent().parent().attr("category");
             let businessIdList = [];
             let alreadyInList = false;
 
@@ -508,16 +517,22 @@ $(document).ready(function () {
     $("#favoriteDropdown").change(function () {
         $("#search-results").html(""); // clear the HTML of the search results when you change the category
         let foodCategory = $(this).val(); // get the foodcategory from the dropdown
-        let foodCategoryAPI = foodCategory.toLowerCase();
-        foodCategory = foodCategoryAPI.toLowerCase() + "+food";
+        let foodCategoryAPI = "All Categories"
+        if (foodCategory !== "All Favorites") {
+            foodCategoryAPI = foodCategory.toLowerCase();
+            foodCategory = foodCategoryAPI.toLowerCase() + "+food";
+        }
         userList("favorites", foodCategory, foodCategoryAPI); // pass variables into a function to build a favorite or blacklist
     })
     // same function as above, but navigates to the blacklist for the user.
     $("#blacklistDropdown").change(function () {
         $("#search-results").html(""); 
         let foodCategory = $(this).val();
-        let foodCategoryAPI = foodCategory.toLowerCase();
-        foodCategory = foodCategoryAPI.toLowerCase() + "+food";
+        let foodCategoryAPI = "All Categories"
+        if (foodCategory !== "All Blacklisted") {
+            let foodCategoryAPI = foodCategory.toLowerCase();
+            foodCategory = foodCategoryAPI.toLowerCase() + "+food";
+        }
         userList("blacklist", foodCategory, foodCategoryAPI);
     });
 });
