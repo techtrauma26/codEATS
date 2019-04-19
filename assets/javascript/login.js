@@ -33,6 +33,15 @@ $(document).ready(function(){
         $("#username").val(localUserName);
     }
 
+    function navbar() {
+        var modal = document.getElementById("myLinks");
+        if (modal.style.display === "block") {
+          modal.style.display = "none";
+        } else {
+          modal.style.display = "block";
+        }
+      }
+
     $("#login-button").on("click", function(){
         let username = $("#username").val().trim();
 
