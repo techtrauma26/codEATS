@@ -50,11 +50,11 @@ $(document).ready(function () {
     function navbar() {
         var modal = document.getElementById("myLinks");
         if (modal.style.display === "block") {
-          modal.style.display = "none";
+            modal.style.display = "none";
         } else {
-          modal.style.display = "block";
+            modal.style.display = "block";
         }
-      }
+    }
 
     // the function that performs the yelp API call using data established by the user on the index.html page.
     function search() {
@@ -77,11 +77,11 @@ $(document).ready(function () {
                 // Pull data for each of the restaurants
                 let name = response.businesses[i].name;
                 let isClosed = response.businesses[i].is_closed;
-                    if (isClosed === false) {
-                        openImg = "assets/images/open.png"
-                    } else {
-                        openImg = "assets/images/closed.png"
-                    };
+                if (isClosed === false) {
+                    openImg = "assets/images/open.png"
+                } else {
+                    openImg = "assets/images/closed.png"
+                };
 
                 let phone = response.businesses[i].display_phone
                 let dialPhone = response.businesses[i].phone
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
                 let lat = response.businesses[i].coordinates.latitude;
                 let long = response.businesses[i].coordinates.longitude;
-                
+
                 if (address3 !== undefined) {
                     address = `${address1}, ${address2}, ${address3}`
                 } else {
@@ -209,9 +209,9 @@ $(document).ready(function () {
                 snapshot.child(`users/${currentUser}/${pathString}`).forEach(function (userSnapshot) {
                     let listItemID = userSnapshot.val().id; // get the business ID for the API call
                     let listItemCategory = userSnapshot.val().category; // get the category
-                   
+
                     // if the category in the database matches the dropdown category, add that business ID to the list we will pull.
-                    if (listItemCategory === `${foodCategory}` || foodCategory === "All Favorites" || foodCategory === "All Blacklisted") { 
+                    if (listItemCategory === `${foodCategory}` || foodCategory === "All Favorites" || foodCategory === "All Blacklisted") {
                         businessIdList.push(listItemID);
                     }
                 })
@@ -235,11 +235,11 @@ $(document).ready(function () {
                 // console.log(response)
                 let name = response.name;
                 let isClosed = response.is_closed;
-                    if (isClosed === false) {
-                        openImg = "assets/images/open.png"
-                    } else {
-                        openImg = ""
-                    };
+                if (isClosed === false) {
+                    openImg = "assets/images/open.png"
+                } else {
+                    openImg = "assets/images/closed.png"
+                };
                 let phone = response.display_phone
                 let dialPhone = response.phone
                 let distanceRaw = response.distance
@@ -427,29 +427,29 @@ $(document).ready(function () {
             let alreadyInList = false;
 
             rootReference.once("value") // pulls data one time from the database
-            // get a list of the items from you favorite list and see if the business ID matches the one you are trying to favorite.
-            .then(function (snapshot) {
-                snapshot.child(`users/${currentUser}/favorites`).forEach(function (userSnapshot) {
-                    let listItemID = userSnapshot.val().id;
-                    businessIdList.push(listItemID);
-                    if (favoriteBusinessID === listItemID) {
-                        alreadyInList = true;
+                // get a list of the items from you favorite list and see if the business ID matches the one you are trying to favorite.
+                .then(function (snapshot) {
+                    snapshot.child(`users/${currentUser}/favorites`).forEach(function (userSnapshot) {
+                        let listItemID = userSnapshot.val().id;
+                        businessIdList.push(listItemID);
+                        if (favoriteBusinessID === listItemID) {
+                            alreadyInList = true;
+                        }
+
+                    })
+                    if (alreadyInList === false) {
+                        // construct an object to pass to the database.
+                        let favoriteObject = { "name": favoriteName, "id": favoriteBusinessID, "category": favoriteCatgeory };
+                        // push the new favorite object to the database.
+                        $("#favorite-alert").fadeTo(2000, 500).slideUp(500, function () {
+                            $("#favorite-alert").slideUp(500);
+                        });
+                        pushFavorite(favoriteObject);
                     }
-                    
-                })
-                if (alreadyInList === false) {
-                    // construct an object to pass to the database.
-                    let favoriteObject = { "name": favoriteName, "id": favoriteBusinessID, "category": favoriteCatgeory };
-                    // push the new favorite object to the database.
-                    $("#favorite-alert").fadeTo(2000, 500).slideUp(500, function(){
-                        $("#favorite-alert").slideUp(500);
-                        });   
-                    pushFavorite(favoriteObject);
-                } 
-                else {
-                    $("#favoriteExistsModal").modal();
-                }
-            });
+                    else {
+                        $("#favoriteExistsModal").modal();
+                    }
+                });
             // If we searched the database and did not find an ID already in the list, continue with database push.
         }
     });
@@ -467,28 +467,28 @@ $(document).ready(function () {
             let alreadyInList = false;
 
             rootReference.once("value") // pulls data one time from the database
-            // get a list of the items from you favorite list and see if the business ID matches the one you are trying to favorite.
-            .then(function (snapshot) {
-                snapshot.child(`users/${currentUser}/blacklist`).forEach(function (userSnapshot) {
-                    let listItemID = userSnapshot.val().id;
-                    businessIdList.push(listItemID);
-                    if (blacklistBusinessID === listItemID) {
-                        alreadyInList = true;
+                // get a list of the items from you favorite list and see if the business ID matches the one you are trying to favorite.
+                .then(function (snapshot) {
+                    snapshot.child(`users/${currentUser}/blacklist`).forEach(function (userSnapshot) {
+                        let listItemID = userSnapshot.val().id;
+                        businessIdList.push(listItemID);
+                        if (blacklistBusinessID === listItemID) {
+                            alreadyInList = true;
+                        }
+
+                    })
+                    if (alreadyInList === false) {
+                        // construct an object to pass to the database.
+                        let blacklistObject = { "name": blacklistName, "id": blacklistBusinessID, "category": blacklistCatgeory };
+                        $("#blacklist-alert").fadeTo(2000, 500).slideUp(500, function () {
+                            $("#blacklist-alert").slideUp(500);
+                        });
+                        pushBlacklist(blacklistObject);
                     }
-                    
-                })
-                if (alreadyInList === false) {
-                    // construct an object to pass to the database.
-                    let blacklistObject = { "name": blacklistName, "id": blacklistBusinessID, "category": blacklistCatgeory };
-                    $("#blacklist-alert").fadeTo(2000, 500).slideUp(500, function(){
-                        $("#blacklist-alert").slideUp(500);
-                        });   
-                    pushBlacklist(blacklistObject);
-                } 
-                else {
-                    $("#blacklistExistsModal").modal();
-                }
-            });
+                    else {
+                        $("#blacklistExistsModal").modal();
+                    }
+                });
         }
     });
 
@@ -511,6 +511,12 @@ $(document).ready(function () {
             }
         }
     })
+
+    $("#divWheel1").on("click", function () {
+        console.log("CLICKED!")
+        let currentPrice = ($(this).data("text"));
+        console.log("CurrentPrice:", currentPrice);
+    });
 
     $("#eat").on("click", function () {
         // clear variables
@@ -546,24 +552,28 @@ $(document).ready(function () {
         else {
             // *** make SMART later!
             // if current price is not undefined, grab from DOM. Else, insert empty string.
-            currentPrice = "&price=2";
-            sessionStorage.setItem("price", currentPrice);
-            //let currentPrice = $("#price").val();
-            if (currentPrice === undefined) {
-                currentPrice = ""; // insert a blank string so as to not modify the API call.
-            }
-            // *** make SMART later
-            //let currentRadius = $("#radius").val();
-            currentRadius = "&radius=5000"
-            sessionStorage.setItem("radius", currentRadius);
-            if (currentRadius === undefined) {
-                currentRadius = "";
-            }
+            $(".wheelsUp").on("click", function () {
+                console.log("CLICKED!")
+                let currentPrice = ($(this).attr("data-wheelnav-navitemtext"));
+                console.log("CurrentPrice:", currentPrice);
+                sessionStorage.setItem("price", currentPrice);
+                //let currentPrice = $("#price").val();
+                if (currentPrice === undefined) {
+                    currentPrice = ""; // insert a blank string so as to not modify the API call.
+                }
+                // *** make SMART later
+                //let currentRadius = $("#radius").val();
+                currentRadius = "&radius=5000"
+                sessionStorage.setItem("radius", currentRadius);
+                if (currentRadius === undefined) {
+                    currentRadius = "";
+                }
 
-            // *** make sure it only takes them to the new page if the criteria are met.
-            window.location.href = ("results.html");
-        }
-    })
+                // *** make sure it only takes them to the new page if the criteria are met.
+                window.location.href = ("results.html");
+            });
+        };
+    });
 
     // When changing the category list value on the favorites page, pass the category to a database search
     $("#favoriteDropdown").change(function () {
@@ -578,7 +588,7 @@ $(document).ready(function () {
     })
     // same function as above, but navigates to the blacklist for the user.
     $("#blacklistDropdown").change(function () {
-        $("#search-results").html(""); 
+        $("#search-results").html("");
         let foodCategory = $(this).val();
         let foodCategoryAPI = "All Categories"
         if (foodCategory !== "All Blacklisted") {
