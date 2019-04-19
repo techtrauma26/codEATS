@@ -9,6 +9,7 @@ $(document).ready(function () {
     // *** Need to make this publicly hidden later
     let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
     const categoriesList = ["American", "BBQ", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Thai", "Mediterranean", "Vegetarian", "Doughnuts"];
+    let noResults = true;
 
     // ============================================================
     // FIREBASE Initialization ====================================
@@ -76,7 +77,6 @@ $(document).ready(function () {
                 // Pull data for each of the restaurants
                 let name = response.businesses[i].name;
                 let isClosed = response.businesses[i].is_closed;
-                console.log("closed?",response.businesses[i].is_closed)
                     if (isClosed === false) {
                         openImg = "assets/images/open.png"
                     } else {
@@ -211,7 +211,7 @@ $(document).ready(function () {
                     let listItemCategory = userSnapshot.val().category; // get the category
                    
                     // if the category in the database matches the dropdown category, add that business ID to the list we will pull.
-                    if (listItemCategory === `${foodCategory}`) { 
+                    if (listItemCategory === `${foodCategory}` || foodCategory === "All Favorites" || foodCategory === "All Blacklisted") { 
                         businessIdList.push(listItemID);
                     }
                 })
@@ -225,7 +225,6 @@ $(document).ready(function () {
 
             let businessID = businessIdList[i];
             let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${businessID}`;
-
             $.ajax({
                 url: queryURL,
                 method: "GET",
@@ -316,30 +315,56 @@ $(document).ready(function () {
                 let profilePic = response.image_url;
                 // create a bootstrap card and pass in variables for each restaurant
                 let card =
-                    `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
-                    <div class= "row">
-                    <div class= "col-6">
-                    <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
-                    <div class= "col-6">
-                    <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14&size=100x100&maptype=roadmap&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
-                    </div> </div>
-                    <div class="card-body"> 
-                    <h5 class="card-title" id="name" style="float: left;">${name}</h5><i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i><br><br>
-                    <p class="restInfo" id="strAdd">${address}</p><br>
-                    <p class="restInfo"id="distance">Distance: ${distanceMi} mi</p>
-                    <p class="restInfo"id="phone"><a href="tel:${dialPhone}">${phone}</p>
-                    <div class="map" id="map"></div>
+                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}">
+                <div class= "row">
+                <div class= "col-6">
+                <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
+                <div class= "col-6">
+                <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
+                </div> </div>
+                <div class="card-body"> 
+                <div class= "row">
+                    <div class= "col-9 card-title" id="card-name">
+                        <h5 class="card-title" id="name" style="float: left;">${name}</h5>
+                    </div>
+                    <div class= "col-3">
+                        <i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i>
+                    </div>
                 </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" id="priceRange"><img class="prices" src=${pricePath} alt="price range (${price})"><img id="open" src=${openImg} alt="open-${i}"></li>
-                        <li class="list-group-item" id="rating"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
-                    </ul>
-                </div>`;
+                <div class= "row">
+                    <div class= "col-12 restInfo">
+                        <p class="restInfo" id="strAdd">${address}</p>
+                    </div>
+                </div>
+                <div class= "row">
+                    <div class= "col-6 restInfo">
+                        <p class="restInfo"id="distance">Distance: ${distanceMi} mi</p>
+                    </div>
+                    <div class= "col-6 restInfo">
+                        <p class="restInfo"id="phone"><a href="tel:${dialPhone}">${phone}</p>
+                    </div>
+                </div>            
+            </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" id="priceRange"><img class="prices" src=${pricePath} alt="price range (${price})"><img id="open" src=${openImg} alt="open-${i}"></li>
+                    <li class="list-group-item" id="rating"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
+                </ul>
+            </div>`;
                 $("#search-results").append(card);
             });
         }
+        if (businessIdList.length < 1 || businessIdList === undefined) {
+            $("#search-results").append("<h4 class='text-center' style='color: darkgray; padding-top: 30px;'>No results to display for this Category!</h4>");
+        }
     }
 
+    // If we are on blacklist or favorite, add an extra catgory to the list
+    if (currentPage === "favorites.html") {
+        categoriesList.unshift("All Favorites");
+    }
+    if (currentPage === "blacklist.html") {
+        categoriesList.unshift("All Blacklisted");
+    }
     // run the buildCategories function by default
     buildCategories();
     // If we are on the search page, perform the API call.
@@ -361,9 +386,9 @@ $(document).ready(function () {
         // if they are logged in, carry on with event listener function.
         else {
             // gather the necessary data packet from parent attributes.
-            let favoriteName = $(this).parent().parent().attr("businessname");
-            let favoriteBusinessID = $(this).parent().parent().attr("businessid");
-            let favoriteCatgeory = $(this).parent().parent().attr("category");
+            let favoriteName = $(this).parent().parent().parent().parent().attr("businessname");
+            let favoriteBusinessID = $(this).parent().parent().parent().parent().attr("businessid");
+            let favoriteCatgeory = $(this).parent().parent().parent().parent().attr("category");
             let businessIdList = [];
             let alreadyInList = false;
 
@@ -401,9 +426,9 @@ $(document).ready(function () {
             $("#favoriteLoginModal").modal();
         }
         else {
-            let blacklistName = $(this).parent().parent().attr("businessname");
-            let blacklistBusinessID = $(this).parent().parent().attr("businessid");
-            let blacklistCatgeory = $(this).parent().parent().attr("category");
+            let blacklistName = $(this).parent().parent().parent().parent().attr("businessname");
+            let blacklistBusinessID = $(this).parent().parent().parent().parent().attr("businessid");
+            let blacklistCatgeory = $(this).parent().parent().parent().parent().attr("category");
             let businessIdList = [];
             let alreadyInList = false;
 
@@ -508,16 +533,22 @@ $(document).ready(function () {
     $("#favoriteDropdown").change(function () {
         $("#search-results").html(""); // clear the HTML of the search results when you change the category
         let foodCategory = $(this).val(); // get the foodcategory from the dropdown
-        let foodCategoryAPI = foodCategory.toLowerCase();
-        foodCategory = foodCategoryAPI.toLowerCase() + "+food";
+        let foodCategoryAPI = "All Categories"
+        if (foodCategory !== "All Favorites") {
+            foodCategoryAPI = foodCategory.toLowerCase();
+            foodCategory = foodCategoryAPI.toLowerCase() + "+food";
+        }
         userList("favorites", foodCategory, foodCategoryAPI); // pass variables into a function to build a favorite or blacklist
     })
     // same function as above, but navigates to the blacklist for the user.
     $("#blacklistDropdown").change(function () {
         $("#search-results").html(""); 
         let foodCategory = $(this).val();
-        let foodCategoryAPI = foodCategory.toLowerCase();
-        foodCategory = foodCategoryAPI.toLowerCase() + "+food";
+        let foodCategoryAPI = "All Categories"
+        if (foodCategory !== "All Blacklisted") {
+            let foodCategoryAPI = foodCategory.toLowerCase();
+            foodCategory = foodCategoryAPI.toLowerCase() + "+food";
+        }
         userList("blacklist", foodCategory, foodCategoryAPI);
     });
 });
