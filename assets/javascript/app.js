@@ -514,7 +514,7 @@ $(document).ready(function () {
             $("#indexModal").modal();
         }
         else {
-            // *** make SMART later
+            // *** make SMART later!
             // if current price is not undefined, grab from DOM. Else, insert empty string.
             $(".wheelsUp").on("click", function () {
                 console.log("CLICKED!")
