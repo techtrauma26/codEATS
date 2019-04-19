@@ -552,26 +552,27 @@ $(document).ready(function () {
         else {
             // *** make SMART later!
             // if current price is not undefined, grab from DOM. Else, insert empty string.
-            $(".wheelsUp").on("click", function () {
-                console.log("CLICKED!")
-                let currentPrice = ($(this).attr("data-wheelnav-navitemtext"));
-                console.log("CurrentPrice:", currentPrice);
-                sessionStorage.setItem("price", currentPrice);
-                //let currentPrice = $("#price").val();
+            // $(".wheelsUp").on("click", function () {
+            //     console.log("CLICKED!")
+            //     let currentPrice = ($(this).attr("data-wheelnav-navitemtext"));
+            //     console.log("CurrentPrice:", currentPrice);
+            //     sessionStorage.setItem("price", currentPrice);
+            //     //let currentPrice = $("#price").val();
                 if (currentPrice === undefined) {
                     currentPrice = ""; // insert a blank string so as to not modify the API call.
                 }
                 // *** make SMART later
                 //let currentRadius = $("#radius").val();
-                currentRadius = "&radius=5000"
-                sessionStorage.setItem("radius", currentRadius);
+                // currentRadius = "&radius=5000"
+                // sessionStorage.setItem("radius", currentRadius);
                 if (currentRadius === undefined) {
                     currentRadius = "";
                 }
 
                 // *** make sure it only takes them to the new page if the criteria are met.
+                console.log("yo boi")
                 window.location.href = ("results.html");
-            });
+            
         };
     });
 
