@@ -45,6 +45,6 @@
 // var wheelnav2 = wheelnavWrapper(elementbyclass);
 // wheelnav2.createWheel(["class","class","class","class"]);
 
-var wheel = new wheelnav("divWheel");
-var wheel2 = new wheelnav("divWheel2");
-var wheel3 = new wheelnav("divWheel3");
+var priceWheel = new wheelnav("divWheel1");
+var ratingWheel = new wheelnav("divWheel2");
+var radiusWheel = new wheelnav("divWheel3");
