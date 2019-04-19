@@ -2,216 +2,185 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>codEATS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
-    <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
-    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"> </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>codEATS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+  <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
+  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"> </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+
 </head>
 
 <body>
 
-    <div class="page-header">
-        <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
-    </div>
-    <div class="topnav">
-        <a href="index.html" class="active"></a>
-       
-        <div id="myLinks">
-          <a href="profile.html">Profile</a>
-          <a href="login.html">Login</a>
-          <a href="results.html">Search</a>
-          <a href="favorites.html">Favorites</a>
-          <a href="blacklist.html">Blacklist</a>
+  <div class="page-header top d-flex justify-content-center">
+    <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
+  </div>
+  <div class="page-header bars">
+    <img id="stripes" src="assets/images/stripes.png">
+  </div>
 
-        </div>
-        
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
+  <div class="navvy d-flex justify-content-center">
+    <!--Navbar-->
+    <nav class="navbar">
+
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#"></a>
+
+      <!-- Collapse button -->
+      <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false"
+        aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fas fa-hamburger"></i></span></button>
+
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="favorites.html">Favorites</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="blacklist.html">Banned</a>
+            </li>
+        </ul>
+        <!-- Links -->
+
       </div>
-    <div class="container">
-        <div class="category">
-            <h2>
-                What do I want to eat?
-            </h2>
-            <div class="form-group">
-                <form id="input-form">
+      <!-- Collapsible content -->
 
-                    <label for="category" id="input-label">
-                        <select class="form-control custom-select" id="list">
-                            <option selected>Food Category</option>
+    </nav>
+    <!--/.Navbar-->
+  </div>
 
+  <div class="container">
+    <div class="category justify-content-center">
+      <h2>
+        What do I want to eat?
+      </h2>
+      <div class="form-group">
+        <form id="input-form">
 
-                        </select>
-
-                </form>
-            </div>
-        </div>
-
-        <div class="location">
-            <h2>
-                Where Am I?
-            </h2>
-
-            <form id="locale">
-                <input type="text" id="location-input" placeholder="Input My Location"><br>
-
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label><input id="geolocation" type="checkbox" value="">Use my Geolocation</label>
-                    </div>
-                </div>
+          <label for="category" id="input-label">
+            <select class="form-control custom-select" id="list">
+              <option selected>Food Category</option>
 
 
-        </div>
+            </select>
 
-        <div class="filters">
-            <h2>
-                Meal-terial Matters
-            </h2>
+        </form>
+      </div>
+    </div>
 
-            <div class="container" id="filterList">
-                <div class="filter" id="price">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" id="priceBtn" type="button" data-toggle="dropdown">Price
-                </button>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">$</a></li>
-                          <li><a href="#">$$</a></li>
-                          <li><a href="#">$$$</a></li>
-                          <li><a href="#">$$$$</a></li>
-                        </ul> 
-                      </div>
-                </div>
+    <div class="location">
+      <h2>
+        Where Am I?
+      </h2>
 
-                <div class="filter" id="access">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" id="accessBtn" type="button" data-toggle="dropdown">Ease of Access
-                      </button>
-                        <ul class="dropdown-menu">
-                          <li><a href="#"> <5 miles </a></li>
-                          <li><a href="#"> 5-10 miles </a></li>
-                          <li><a href="#"> 10-15 miles </a></li>
-                          <li><a href="#"> >15 miles </a></li>
-                        </ul> 
-                      </div>
-                </div>
+      <form id="locale">
+        <input type="text" id="location-input" placeholder="Input My Location"><br>
 
-                <div class="filter" id="stars">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" id="ratingBtn" type="button" data-toggle="dropdown">Rating
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a href="#"> <5 miles </a></li>
-                          <li><a href="#"> 5-10 miles </a></li>
-                          <li><a href="#"> 10-15 miles </a></li>
-                          <li><a href="#"> >15 miles </a></li>
-                        </ul> 
-                      </div>
-                </div>
-
-                <div class="filter" id="alcohol">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" id="alcoholBtn" type="button" data-toggle="dropdown">Alcohol
-                   </button>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Yes</a></li>
-                          <li><a href="#">No</a></li>
-                          <li><a href="#">Doesn't matter</a></li>
-                        </ul> 
-                      </div>
-                </div>
-
-
-                <div class="filter" id="reservations">
-                    <div class="dropdown"></div>
-                        <button class="btn btn-primary dropdown-toggle" id="reservationsBtn" type="button" data-toggle="dropdown">Reservations
-                     </button>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Yes</a></li>
-                          <li><a href="#">No</a></li>
-                          <li><a href="#">Doesn't matter</a></li>
-                        </ul> 
-                      </div>
-                </div>
-
-                
-            </div>
-
-
-        </div>
-
-        
-    
-
-
-
-    <script src="assets/javascript/app.js"></script>
-    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cors-anywhere.herokuapp.com/http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-    <div class="container">
-        
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-warning btn-lg" id="eat">EAT!</button>
-        <!-- Modal -->
-        <div class="modal fade" id="indexModal" role="dialog">
-          <div class="modal-dialog">
-          
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Oops!</h4>
-              </div>
-              <div class="modal-body">
-                <p>Please select a food <b>category</b>, and a <b>location</b> to continue. </p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-            
+        <div class="form-group">
+          <div class="checkbox">
+            <label><input id="geolocation" type="checkbox" value="">Use my Geolocation</label>
           </div>
         </div>
-        
+
+
+    </div>
+
+    <div class="filters">
+      <h2>
+        Meal-terial Matters
+      </h2>
+
+      <!-- <div class="container" id="filterList">
+        <div class="filter" id="price"> -->
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Price
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">TEST$</a>
+          <a class="dropdown-item" href="#">TEST$$</a>
+          <a class="dropdown-item" href="#">TEST$$$</a>
+          <a class="dropdown-item" href="#">TEST$$$$</a>
+        </div>
       </div>
-      
+    </div>
+
+
+    <div class="filter" id="access">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" id="accessBtn" type="button" data-toggle="dropdown">Rating
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#"> 1 </a></li>
+          <li><a href="#"> 2</a></li>
+          <li><a href="#"> 3 </a></li>
+          <li><a href="#"> 4 </a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="filter" id="stars">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" id="ratingBtn" type="button" data-toggle="dropdown">Distance
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#"> less than 5 miles </a> </li>
+          <li><a href="#"> 5-10 miles </a></li>
+          <li><a href="#"> 10-15 miles </a></li>
+          <li><a href="#"> >15 miles </a></li>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
 
 
 
-    <script src="assets/javascript/app.js">
-// function for navbar //
-function myFunction() {
-        var x = document.getElementById("myLinks");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-        }
-      }
-// function for modal // needs fx if all selectors are validated then hide modal 
-    $(document).ready(function(){
-  $("#eat").click(function(){
-    $("#myModal").modal();
-  });
-});
-    </script>
-    <!-- <script src="assets/javascript/location.js"></script> -->
+
+
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-warning btn-lg" id="eat">EAT!</button>
+  <!-- Modal -->
+
+
+
+
+
+
+  <script src="assets/javascript/app.js"></script>
+
+
 </body>
+
+</html>
