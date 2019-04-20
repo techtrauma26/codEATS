@@ -239,9 +239,9 @@ h2 {
 }
 
 .map {
-    width: 100%; 
-    height: auto;
-    padding: .5rem;
+    width: 95%;
+    height: 95%;
+    padding: 10px 5px 5px 10px;
 }
 
 .prices {
