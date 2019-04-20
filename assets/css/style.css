@@ -63,6 +63,7 @@ svg {
 
 .navbar {
     display: inline !important;
+    margin: 0 !important;
 }
 .wheels {
     text-align: center;
@@ -129,6 +130,8 @@ svg {
 
 h2 {
     font-weight: bold;
+    padding: .75rem;
+
 }
 .category, .location, .filters, .filterWheel {
     color: rgb(169,14,21);
