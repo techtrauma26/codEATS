@@ -162,7 +162,7 @@ $(document).ready(function () {
                 `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
                 <div class= "row">
                 <div class= "col-6">
-                <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
+                <img class="card-img-top" id="cardMapImg" style="width: 95%; height: 95%; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
                 <div class= "col-6">
                 <img id="mapSelector" class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
                 </div> </div>

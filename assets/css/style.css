@@ -46,7 +46,9 @@ svg {
     text-shadow: 2px 2px darkorange !important;
 
 }
-
+.navbar {
+    display: inline !important;
+}
 .wheels {
     text-align: center;
 }
@@ -239,9 +241,9 @@ h2 {
 }
 
 .map {
-    width: 100%; 
-    height: auto;
-    padding: .5rem;
+    width: 95%;
+    height: 95%;
+    padding: 10px 5px 5px 10px;
 }
 
 .prices {
