@@ -1,5 +1,7 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif'
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ff4343;
+    
 }
 #head {
     max-height: 20vh;
@@ -25,16 +27,10 @@ body {
     background-color: white;
 }
 
-svg {
-    width: 350px;
-    height: 600px;
-    margin-top: -9rem;
-    color: #a90e15;
-    font-size: x-large;
-    text-align: center;
-    /* margin: -5rem auto -5rem auto; */
-  
-    /* opacity: .75; */
+#search-results {
+    display: flex;
+    flex-wrap: wrap;
+    
 }
 
 .navvy {
@@ -48,6 +44,9 @@ svg {
 }
 .navbar {
     display: inline !important;
+    margin: 0 !important;
+}
+.navbar-brand {
     margin: 0 !important;
 }
 .wheels {
@@ -168,7 +167,7 @@ h2 {
 }
 
 .resultsBody {
-    background-color: lightcoral;
+    background-color:#ff4343;
 }
 
 #list, #location-input, #favoriteDropdown, #blacklistDropdown {
