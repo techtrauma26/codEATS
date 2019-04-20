@@ -459,4 +459,30 @@ span.psw {
       padding: .15rem !important;
       
   }
+}
+
+@media screen and (max-height: 800px) {
   
+    #price, #rating, #radius {
+        width: 32vw;
+        height: 4rem;
+        text-align: center;
+        margin: 0 auto;
+        background-color: rgb(255,201,14);
+        border: 5px solid rgb(169,14,21);
+        color: rgb(169,14,21);
+        font-weight: bold;
+        font-size: small;
+        text-shadow: 2px 2px darkorange;
+        padding: 0rem .15rem !important;
+        
+    }
+    
+    h2 {
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+    }
+
+    conBox {
+        margin: 0 !important;
+    }
