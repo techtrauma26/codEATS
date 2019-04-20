@@ -192,7 +192,7 @@ $(document).ready(function () {
             </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" id="priceRange"><img class="prices" src=${pricePath} alt="price range (${price})"><img id="open" src=${openImg} alt="open-${i}"></li>
-                    <li class="list-group-item" id="rating"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
+                    <li class="list-group-item" id="reviews"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
                 </ul>
             </div>`;
                 $("#search-results").append(card);
@@ -347,7 +347,7 @@ $(document).ready(function () {
             </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" id="priceRange"><img class="prices" src=${pricePath} alt="price range (${price})"><img id="open" src=${openImg} alt="open-${i}"></li>
-                    <li class="list-group-item" id="rating"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
+                    <li class="list-group-item" id="reviews"><img src=${ratingPath} alt="yelp rating (${rating})"><img src="assets/images/yelp_stars/Yelp_trademark_RGB_outline.png" alt="Yelp Logo" style="width: 100px;"><p class="pCard" style="font-size: 10pt; color: #767777;">${reviewCount} Reviews</p></li>
                 </ul>
             </div>`;
                 $("#search-results").append(card);

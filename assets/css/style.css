@@ -153,7 +153,7 @@ h2 {
 .filterWheel {
     margin: 0;
 }
-.card, #priceRange, #rating {
+.card, #priceRange, #reviews {
     background-color: rgb(252, 253, 156)
 }
 
@@ -197,7 +197,7 @@ h2 {
     padding-bottom: -12px;
 }
 
-#rating {
+#reviews {
     padding-top: 0px;
 }
 
@@ -228,8 +228,9 @@ h2 {
     border: 5px solid rgb(169,14,21);
     color: rgb(169,14,21);
     font-weight: bold;
-    font-size: large;
+    font-size: larger;
     text-shadow: 2px 2px darkorange;
+  
     
 }
 
@@ -252,11 +253,6 @@ h2 {
     width: 15%
 }
 
-
-/* #filterList {
-    /* p
-    adding: .1rem; */
-/* } */
 
 #eat {
     color: rgb(169,14,21);
@@ -372,7 +368,6 @@ span.psw {
   }
 }
 
-
 .modal-confirm {		
     color: #434e65;
     width: 525px;
@@ -447,3 +442,21 @@ span.psw {
     background: #eda645;
     outline: none;
 }
+
+@media screen and (max-width: 776px) {
+  
+  #price, #rating, #radius {
+      width: 32vw;
+      height: 4rem;
+      text-align: center;
+      margin: 0 auto;
+      background-color: rgb(255,201,14);
+      border: 5px solid rgb(169,14,21);
+      color: rgb(169,14,21);
+      font-weight: bold;
+      font-size: small;
+      text-shadow: 2px 2px darkorange;
+      padding: .15rem !important;
+      
+  }
+  
