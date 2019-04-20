@@ -487,7 +487,9 @@ $(document).ready(function () {
             let blacklistName = $(this).parent().parent().parent().parent().attr("businessname");
             let blacklistBusinessID = $(this).parent().parent().parent().parent().attr("businessid");
             let blacklistCatgeory = $(this).parent().parent().parent().parent().attr("category");
-            $(this).parent().parent().parent().parent().hide(); // hide the card for the blacklisted item.
+            if (currentPage === "results.html") {
+                $(this).parent().parent().parent().parent().hide(); // hide the card for the blacklisted item.
+            }
             let businessIdList = [];
             let alreadyInList = false;
 
