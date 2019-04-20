@@ -599,7 +599,7 @@ $(document).ready(function () {
                     case "Less than 1 mile":
                         currentRadius = "&radius=1609";
                         break;
-                    case "Less than 5 mile":
+                    case "Less than 5 miles":
                         currentRadius = "&radius=8046";
                         break;
                     case "Less than 10 miles":
