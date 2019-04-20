@@ -8,7 +8,7 @@ $(document).ready(function () {
     // Our API Key
     // *** Need to make this publicly hidden later
     let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
-    const categoriesList = ["American", "Burger", "BBQ", "Diner", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Thai", "Mediterranean", "Vegetarian", "Kosher", "Seafood", "Doughnuts"];
+    const categoriesList = ["American", "Burger", "BBQ", "Diner", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Thai", "Mediterranean", "Vegetarian", "Kosher", "Halal", "Seafood", "Doughnuts"];
     let noResults = true;
 
     // ============================================================
