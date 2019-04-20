@@ -46,7 +46,9 @@ svg {
     text-shadow: 2px 2px darkorange !important;
 
 }
-
+.navbar {
+    display: inline !important;
+}
 .wheels {
     text-align: center;
 }
