@@ -46,6 +46,7 @@ svg {
     text-shadow: 2px 2px darkorange !important;
 
 }
+<<<<<<< HEAD
 
 .btn-filters {
     /* min-width: auto; */
@@ -61,6 +62,11 @@ svg {
     flex-wrap: wrap; */
 }
 
+=======
+.navbar {
+    display: inline !important;
+}
+>>>>>>> 297c7b03a3688f39c2ffc446d4b662659e99cc99
 .wheels {
     text-align: center;
 }
