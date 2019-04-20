@@ -33,6 +33,11 @@ body {
     
 }
 
+.searchCon {
+    width: 100vw;
+
+}
+
 .navvy {
     text-align: center;
     margin: 0 auto;
@@ -147,10 +152,20 @@ h2 {
     background-color: rgb(252, 253, 156)
 }
 
+#cardMapImg {
+    width: 98%;
+    height: auto; 
+    padding: 10px 5px 5px 10px;
+}
+
 .card {
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin: .5em;
     max-width: 500px;
+}
+
+.no-gutters {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
 }
 
 #name {
@@ -257,9 +272,13 @@ h2 {
     
 }
 
+.col-6 {
+    margin: 0;
+}
+
 .map {
-    width: 95%;
-    height: 95%;
+    width: 98%;
+    height: auto;
     padding: 10px 5px 5px 10px;
 }
 
@@ -315,7 +334,7 @@ img.avatar {
 }
 
 .container {
-  padding: 16px;
+  padding: .25rem !important;
 }
 
 span.psw {

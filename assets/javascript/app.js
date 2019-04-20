@@ -162,17 +162,17 @@ $(document).ready(function () {
                 let card =
                 `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
                 <div class= "row">
-                <div class= "col-6">
-                <img class="card-img-top" id="cardMapImg" style="width: 95%; height: 95%; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
-                <div class= "col-6">
+                <div class= "col-6 no-gutters">
+                <img class="card-img-top" id="cardMapImg" src="${profilePic}" alt="Card image cap"> </div>
+                <div class= "col-6 no-gutters">
                 <img id="mapSelector" class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
                 </div> </div>
                 <div class="card-body"> 
                 <div class= "row">
-                    <div class= "col-9 card-title" id="card-name">
+                    <div class= "col-8 card-title" id="card-name">
                         <h5 class="card-title" id="name" style="float: left;">${name}</h5>
                     </div>
-                    <div class= "col-3">
+                    <div class= "col-4 no-gutters">
                         <i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i>
                     </div>
                 </div>
@@ -318,14 +318,14 @@ $(document).ready(function () {
                 let card =
                 `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
                 <div class= "row">
-                <div class= "col-6">
-                <img class="card-img-top" id="cardMapImg" style="width: 175px; height: 175px; padding: 10px 5px 5px 10px" src="${profilePic}" alt="Card image cap"> </div>
-                <div class= "col-6">
+                <div class= "col-6 no-gutters">
+                <img class="card-img-top" id="cardMapImg" src="${profilePic}" alt="Card image cap"> </div>
+                <div class= "col-6 no-gutters">
                 <img id="mapSelector" class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${long}&zoom=14.75&size=100x100&maptype=roadmap&markers=size:small|color:red%7C${lat},${long}&key=AIzaSyCsGFnE3jXUNWVPu8NNUTeDaRmDtRDIxiI" alt="map">
                 </div> </div>
                 <div class="card-body"> 
                 <div class= "row">
-                    <div class= "col-9 card-title" id="card-name">
+                    <div class= "col-8 card-title" id="card-name">
                         <h5 class="card-title" id="name" style="float: left;">${name}</h5>
                     </div>
                     <div class= "col-3">
@@ -359,6 +359,30 @@ $(document).ready(function () {
         }
     }
 
+    function bizHours(businessIdList) {
+        for (let i = 0; i < businessIdList.length; i++) {
+
+            let businessID = businessIdList[i];
+            let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${businessID}`;
+            $.ajax({
+                url: queryURL,
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${apiKey}`
+                }
+            }).then(function (response) {
+                console.log("biz response",response)
+                let name = response.name;
+                let isClosed = response.is_closed;
+                if (isClosed === false) {
+                    openImg = "assets/images/open.png"
+                } else {
+                    openImg = "assets/images/closed.png"
+
+                }
+            });
+        };
+    };
     // If we are on blacklist or favorite, add an extra catgory to the list
     if (currentPage === "favorites.html") {
         categoriesList.unshift("All Favorites");
