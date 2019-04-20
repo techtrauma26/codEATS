@@ -47,6 +47,20 @@ svg {
 
 }
 
+.btn-filters {
+    /* min-width: auto; */
+    width: 20vw;
+    min-width: 30vw;
+    font-size: large !important;
+    font-weight: bold !important;
+    color: #a90e15 !important;
+    background-color: rgb(255,201,14) !important;
+    text-shadow: 2px 2px darkorange !important;
+    border: 5px solid rgb(169,14,21) !important;
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+
 .wheels {
     text-align: center;
 }
