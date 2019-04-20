@@ -62,8 +62,9 @@ $(document).ready(function () {
         let location = sessionStorage.getItem("location");
         let price = sessionStorage.getItem("price");
         let radius = sessionStorage.getItem("radius");
-        let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${category}${location}${price}${radius}`;
-        //console.log(queryURL)
+        let sortRating = sessionStorage.getItem("rating");
+        let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${category}${location}&price=${price}${radius}${sortRating}`;
+        console.log(queryURL)
 
         $.ajax({
             url: queryURL,
@@ -72,7 +73,7 @@ $(document).ready(function () {
                 "Authorization": `Bearer ${apiKey}`
             }
         }).then(function (response) {
-            //console.log(response)
+            console.log(response)
             for (let i = 0; i < response.businesses.length; i++) {
                 // Pull data for each of the restaurants
                 let name = response.businesses[i].name;
@@ -86,7 +87,7 @@ $(document).ready(function () {
                 let phone = response.businesses[i].display_phone
                 let dialPhone = response.businesses[i].phone
                 let distanceRaw = response.businesses[i].distance
-                let distanceMi = (distanceRaw / 1600).toFixed(2);
+                let distanceMi = (distanceRaw / 1609.34).toFixed(2);
 
                 let address1 = response.businesses[i].location.display_address[0];
                 let address2 = response.businesses[i].location.display_address[1]
@@ -518,6 +519,7 @@ $(document).ready(function () {
         let currentLocation = "";
         let currentPrice = "";
         let currentRadius = 0;
+        let sortRating = "";
         let usingGeoLoc = false;
         // rough code for making a modal appear if minimum search criteria is not met.
 
@@ -544,28 +546,74 @@ $(document).ready(function () {
             $("#indexModal").modal();
         }
         else {
-            // *** make SMART later!
-            // if current price is not undefined, grab from DOM. Else, insert empty string.
-            // $(".wheelsUp").on("click", function () {
-            //     console.log("CLICKED!")
-            //     let currentPrice = ($(this).attr("data-wheelnav-navitemtext"));
-            //     console.log("CurrentPrice:", currentPrice);
-            //     sessionStorage.setItem("price", currentPrice);
-            //     //let currentPrice = $("#price").val();
-                if (currentPrice === undefined) {
-                    currentPrice = ""; // insert a blank string so as to not modify the API call.
-                }
-                // *** make SMART later
-                //let currentRadius = $("#radius").val();
-                // currentRadius = "&radius=5000"
-                // sessionStorage.setItem("radius", currentRadius);
-                if (currentRadius === undefined) {
-                    currentRadius = "";
-                }
 
-                // *** make sure it only takes them to the new page if the criteria are met.
-                console.log("yo boi")
-                window.location.href = ("results.html");
+            currentPrice = $("#price").val();
+            if (currentPrice === "Price") {
+                currentPrice = "1,2,3,4"; // insert a blank string so as to not modify the API call.
+                sessionStorage.setItem("price", currentPrice);
+            } 
+            else {
+                switch (currentPrice) {
+                    case "$":
+                        currentPrice = "1";
+                        break;
+                    case "$$":
+                        currentPrice = "2";
+                        break;
+                    case "$$$":
+                        currentPrice = "2,3";
+                        break;
+                    case "$$$$":
+                        currentPrice = "3,4";
+                        break;
+                }
+                sessionStorage.setItem("price", currentPrice);
+            }
+
+            sortRating = $("#rating").val();
+            if (sortRating === "Sort by Rating?") {
+                sortRating = ""; // insert a blank string so as to not modify the API call.
+                sessionStorage.setItem("rating", sortRating)
+                console.log(sortRating);
+            } 
+            else {
+                switch (sortRating) {
+                    case "Yes":
+                        sortRating = "&sort_by=rating";
+                        break;
+                    case "No":
+                        sortRating = "";
+                        break;
+                }
+                console.log(sortRating)
+                sessionStorage.setItem("rating", sortRating);
+            }
+            
+            currentRadius = $("#radius").val();
+            if (currentRadius === "Distance") {
+                currentRadius = ""; // insert a blank string so as to not modify the API call.
+                sessionStorage.setItem("radius", currentRadius)
+            } 
+            else {
+                switch (currentRadius) {
+                    case "Less than 1 mile":
+                        currentRadius = "&radius=1609";
+                        break;
+                    case "Less than 5 mile":
+                        currentRadius = "&radius=8046";
+                        break;
+                    case "Less than 10 miles":
+                        currentRadius = "&radius=16093";
+                        break;
+                    case "More than 10 miles":
+                        currentRadius = "";
+                        break;
+                }
+                sessionStorage.setItem("radius", currentRadius);
+            }
+
+            // *** make sure it only takes them to the new page if the criteria are met.
+            window.location.href = ("results.html");
             
         };
     });
