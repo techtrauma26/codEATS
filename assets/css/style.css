@@ -154,7 +154,8 @@ h2 {
     margin: 0;
 }
 .card, #priceRange, #reviews {
-    background-color: rgb(252, 253, 156)
+    background-color: rgb(252, 253, 156);
+    box-shadow: -1px 1px 16px 1px rgba(0, 0, 0, 0.36);
 }
 
 #cardMapImg {
@@ -202,7 +203,7 @@ h2 {
 }
 
 .resultsBody {
-    background-color: lightcoral;
+    background-color: #ff4343;
 }
 
 #list, #location-input, #favoriteDropdown, #blacklistDropdown {
@@ -216,6 +217,7 @@ h2 {
     font-weight: bold;
     text-shadow: 2px 2px darkorange;
     min-width: fit-content;
+    box-shadow: -1px 1px 16px 1px rgba(0, 0, 0, 0.36);
 
 }
 
@@ -230,6 +232,7 @@ h2 {
     font-weight: bold;
     font-size: larger;
     text-shadow: 2px 2px darkorange;
+    box-shadow: -1px 1px 16px 1px rgba(0, 0, 0, 0.36);
   
     
 }
@@ -256,7 +259,7 @@ h2 {
 
 #eat {
     color: rgb(169,14,21);
-    text-shadow: 2px 2px darkorange;
+    text-shadow: 2px 2px #ffc90e;
     font-weight: bold;
     border: 5px solid rgb(169,14,21);
     text-align: center;
@@ -265,12 +268,13 @@ h2 {
     display: inherit;
     width: 50%;
     margin-bottom: .25rem;
-    background-color: rgb(255,201,14)
+    background-color: darkorange;
+    box-shadow: -1px 1px 16px 1px rgba(0, 0, 0, 0.36);
 }
 
 .btn-primary {
 
-    background-color: rgb(255,201,14) !important;
+    background-color: #ffc90e !important;
     border: 5px solid rgb(169,14,21) !important;
     color: rgb(169,14,21) !important;
     text-shadow: 2px 2px darkorange !important;
