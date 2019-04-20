@@ -8,7 +8,7 @@ $(document).ready(function () {
     // Our API Key
     // *** Need to make this publicly hidden later
     let apiKey = "IkthJOhbnmrhVTwbTB6OGKMzeQSlDeLB9EIS35SKpaE6_N7K7Xo_JVhnh383r_cQNRFPAo9y73ifnCRqHwsuDvxtuV3tCtKC4azI9ciyF-PgiuQbKi4i6ozdnAiwXHYx";
-    const categoriesList = ["American", "BBQ", "Diner", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Thai", "Mediterranean", "Vegetarian", "Doughnuts", "Seafood"];
+    const categoriesList = ["American", "BBQ", "Diner", "Pizza", "Indian", "Mexican", "Italian", "Chinese", "Japanese", "Korean", "Thai", "Mediterranean", "Vegetarian", "Seafood", "Doughnuts"];
     let noResults = true;
 
     // ============================================================
@@ -212,7 +212,7 @@ $(document).ready(function () {
                     let listItemCategory = userSnapshot.val().category; // get the category
 
                     // if the category in the database matches the dropdown category, add that business ID to the list we will pull.
-                    if (listItemCategory === `${foodCategory}` || foodCategory === "All Favorites" || foodCategory === "All Blacklisted") {
+                    if (listItemCategory === `${foodCategory}` || foodCategory === "All Favorites" || foodCategory === "All Banned List") {
                         businessIdList.push(listItemID);
                     }
                 })
@@ -328,7 +328,7 @@ $(document).ready(function () {
                     <div class= "col-8 card-title" id="card-name">
                         <h5 class="card-title" id="name" style="float: left;">${name}</h5>
                     </div>
-                    <div class= "col-3">
+                    <div class= "col-4 no-gutters">
                         <i class="far fa-thumbs-down fa-lg"></i><i class="far fa-thumbs-up fa-lg"></i>
                     </div>
                 </div>
@@ -388,7 +388,7 @@ $(document).ready(function () {
         categoriesList.unshift("All Favorites");
     }
     if (currentPage === "blacklist.html") {
-        categoriesList.unshift("All Blacklisted");
+        categoriesList.unshift("All Banned List");
     }
     // run the buildCategories function by default
     buildCategories();
@@ -658,7 +658,7 @@ $(document).ready(function () {
         $("#search-results").html("");
         let foodCategory = $(this).val();
         let foodCategoryAPI = "All Categories"
-        if (foodCategory !== "All Blacklisted") {
+        if (foodCategory !== "All Banned List") {
             let foodCategoryAPI = foodCategory.toLowerCase();
             foodCategory = foodCategoryAPI.toLowerCase() + "+food";
         }
