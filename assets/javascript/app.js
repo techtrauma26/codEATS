@@ -198,7 +198,6 @@ $(document).ready(function () {
                 $("#search-results").append(card);
             }
         });
-console.log(businessIdList)
     }
 
     function userList(pathString, foodCategory, foodCategoryAPI) {
