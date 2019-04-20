@@ -160,7 +160,7 @@ $(document).ready(function () {
                 let profilePic = response.businesses[i].image_url;
                 // create a bootstrap card and pass in variables for each restaurant
                 let card =
-                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
+                `<div class="card content-align-center shadow" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
                 <div class= "row">
                 <div class= "col-6 no-gutters">
                 <img class="card-img-top" id="cardMapImg" src="${profilePic}" alt="Card image cap"> </div>
@@ -315,7 +315,7 @@ $(document).ready(function () {
                 let profilePic = response.image_url;
                 // create a bootstrap card and pass in variables for each restaurant
                 let card =
-                `<div class="card content-align-center" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
+                `<div class="card content-align-center shadow" businessid="${businessID}" businessname="${name}" category="${category}" lat="${lat}" long="${long}">
                 <div class= "row">
                 <div class= "col-6 no-gutters">
                 <img class="card-img-top" id="cardMapImg" src="${profilePic}" alt="Card image cap"> </div>
