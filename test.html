@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>codEATS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+  <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
+  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"> </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="page-header top d-flex justify-content-center">
+    <a href="index.html"><img id="head" src="assets/images/banner.png"></a>
+  </div>
+  <div class="page-header bars">
+    <img id="stripes" src="assets/images/stripes.png">
+  </div>
+  <div class="navvy d-flex justify-content-center">
+    <!--Navbar-->
+    <nav class="navbar">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#"></a>
+      <!-- Collapse button -->
+      <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false"
+        aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fas fa-hamburger"></i></span></button>
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="favorites.html">Favorites</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="blacklist.html">Banned</a>
+          </li>
+        </ul>
+        <!-- Links -->
+      </div>
+      <!-- Collapsible content -->
+    </nav>
+    <!--/.Navbar-->
+  </div>
+  <div class="container">
+    <div class="category justify-content-center">
+      <h2>
+        What do I want to eat?
+      </h2>
+      <div class="form-group">
+        <form id="input-form">
+          <label for="category" id="input-label">
+            <select class="form-control custom-select" id="list">
+              <option selected>Food Category</option>
+            </select>
+        </form>
+      </div>
+    </div>
+    <div class="location">
+      <h2>
+        Where Am I?
+      </h2>
+      <form id="locale">
+        <input type="text" id="location-input" placeholder="Input My Location"><br>
+        <div class="form-group">
+          <div class="checkbox">
+            <label><input id="geolocation" type="checkbox" value="">Use my Geolocation</label>
+          </div>
+        </div>
+    </div>
+    <div class="filters">
+      <h2>
+        Meal-terial Matters
+      </h2>
+    </div>
+    <div class="container justify-content-center flexin">
+      <div class="col-4 d-flex justify-content-center">
+        <div class="filter-head d-flex justify-content-center">
+          <h3>Price</h3>
+          <div class="wheel">
+            <img id="coolboi" src="assets/images/priceWheel.png" width="300px" height="300px" usemap="priceMap">
+            <map name="priceMap" id="priceMap">
+              <area class="price1" alt="price1" title="price1" shape="rect" id="price1" data-name="$"
+                coords="51,150,145,51" href="#"/>
+              <area class="price2" alt="price2" title="price2" shape="rect" id="price2" data-name="$$"
+                coords="254,147,156,52" href="#"/>
+              <area class="price3" alt="price3" title="price3" shape="rect" id="price3" data-name="$$$"
+                coords="255,156,157,253" href="#"/>
+              <area class="price4" alt="price4" title="price3" shape="rect" id="price4" data-name="$$$$"
+                coords="148,253,52,159" href="#"/>
+            </map>
+          </div>
+        </div>
+      </div>
+      </div>
+      <script>
+      $(document).ready(function () {
+
+            // $("#coolboi").on("click", function () {
+            //     console.log("You got awesome sauce");
+            //     let priceFil = $("#price2").attr("data-name");
+            //     console.log("Price:", priceFil)
+        
+            // });
+
+            $("#price1").on("click", function(e){
+                e.preventDefault();
+                alert("yass boi")
+                /*
+                your code here
+                */
+            });
+        
+        }); </script>

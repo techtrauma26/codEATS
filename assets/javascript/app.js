@@ -512,12 +512,6 @@ $(document).ready(function () {
         }
     })
 
-    $("#divWheel1").on("click", function () {
-        console.log("CLICKED!")
-        let currentPrice = ($(this).data("text"));
-        console.log("CurrentPrice:", currentPrice);
-    });
-
     $("#eat").on("click", function () {
         // clear variables
         let currentCategory = "";
