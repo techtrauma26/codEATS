@@ -551,10 +551,13 @@ $(document).ready(function () {
 
         currentCategory = $("#list").val();
         if (currentCategory !== "Food Category") {
-            if (currentCategory !== "coffee") {
+            // coffee is a special case where we don't want to append food to the search term
+            if (currentCategory !== "Coffee") {
                 currentCategory = currentCategory.toLowerCase() + "+food";
             }
-            console.log(currentCategory)
+            else {
+                currentCategory = currentCategory.toLowerCase();
+            }
             sessionStorage.setItem("category", currentCategory); // store variable in session data to use on search page
         }
 
@@ -603,7 +606,6 @@ $(document).ready(function () {
             if (sortRating === "Sort by Rating?") {
                 sortRating = ""; // insert a blank string so as to not modify the API call.
                 sessionStorage.setItem("rating", sortRating)
-                console.log(sortRating);
             } 
             else {
                 switch (sortRating) {
@@ -614,7 +616,6 @@ $(document).ready(function () {
                         sortRating = "";
                         break;
                 }
-                console.log(sortRating)
                 sessionStorage.setItem("rating", sortRating);
             }
             
