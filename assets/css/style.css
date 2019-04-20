@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ff4343;
+    
     
 }
 #head {
@@ -182,7 +182,7 @@ h2 {
 }
 
 .resultsBody {
-    background-color:#ff4343;
+    background-color: lightcoral;
 }
 
 #list, #location-input, #favoriteDropdown, #blacklistDropdown {
