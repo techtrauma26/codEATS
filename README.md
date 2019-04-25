@@ -25,6 +25,7 @@ There are also 3 additional optional search filters that can be used to fine tun
 
 - results.html:
 
+This page is launched upon the execution of the user search on the index.html page and contains the results based on the search parameters entered.  The results are presented in a useful card that leads with the official Yelp image for the restaurant with the google map showing the general location of the restaurant.  Clicking on the map conveniently launches navigation through Google from the user's current location to the restaurant in a separate browser tab.  Also included in the results card are the address, distance from the user’s location in miles, and the phone number for the restaurant.  A click of the phone number in a mobile device enables easy dialing to check the restaurant’s hours or to inquire about reservations or being added to a wait list.  The card also displays the Yelp price rating, following by the Yelp customer rating with the number of reviews used to determine the rating.  Finally, the OPEN sign on the card confirms the restaurant is open for business.  
 
 - favorites.html and blacklist.html:
 
