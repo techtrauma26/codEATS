@@ -6,15 +6,17 @@ codEATs is a mobile-first application that quickly matches its users with a rest
 # Getting Started
 codEATS was designed with simplicity in mind. As such, the website should be fairly easy to navigate. Please see the below functionality by page:
 
-- login.html
+- login.html:
+
 This page will allow the user to login to codEATS. Only users with an existing valid user name will be able to log in with the current version. If the username does not exist in our Firebase database, a login error will occur. If "remember me" is checked at log in, the username will be saved to local storage for later use. Logging in is not necessary to use the application. 
 
-- index.html
+- index.html:
 
-- results.html
+- results.html:
 
 
-- favorites.html and blacklist.html
+- favorites.html and blacklist.html:
+
 These two pages function in the same way. The user (if logged in), will be able to select a food category from the dropdown menu and display the favorite or banned restaurants from that category. Upon selecting a category, Firebase will return an array of unique Yelp business IDs to pass into the yelp business search API. It will use the results of these individual calls to pull data about the restaurants and display cards just like results.html for the user to view.
 
 # Built With
