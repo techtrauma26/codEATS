@@ -12,6 +12,17 @@ This page will allow the user to login to codEATS. Only users with an existing v
 
 - index.html:
 
+
+This page is the main landing page for codEATS, and is known in the navigation bar as the Search page.  This page contains the main UI in which a user is able quickly identify their dining desires to generate a list of restaurants that will best quench their craving.  The page is designed to display all of the user inputs within the vertical viewport of the user’s mobile device with no scrolling required.  There are 2 required inputs on the page: 1) the category of restaurant the user wants to eat, and 2) the location of the user.  The page allows the user to either key in their current location, or check the box to allow codEATS to use the geolocation of the user.  This info is all codEATS needs to generate a restaurant list in the user’s vincity for the category the user is craving.  
+
+There are also 3 additional optional search filters that can be used to fine tune the search results: 
+
+1) PRICE- this filter allows the user to indicate their desired price point from $ to $$$$ with $ being the least expensive and $$$$ being the most.  A choice of $ will return only the cheapest price point for the category.  Selections of $$ or $$$ will contain a combination of these price points and lower price points, while $$$$ returns the most expensive.
+
+2) RATING (SORT BY)- this filter allows the user to sort the results based on the Yelp rating for the restaurant.  The sort logic takes into account the number of reviews the restaurant has received, so a restaurant with a 4 star rating but a higher number of reviews could display higher than a restaurant with a 4.5 rating based on a limited number of reviews.  
+
+3) RANGE- this filter allows the user to identify the preferred proximity of the results that are returned based on the consumer’s travel considerations.
+
 - results.html:
 
 
