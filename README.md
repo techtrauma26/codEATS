@@ -18,11 +18,11 @@ This page will allow the user to login to codEATS. Only users with an existing v
 These two pages function in the same way. The user (if logged in), will be able to select a food category from the dropdown menu and display the favorite or banned restaurants from that category. Upon selecting a category, Firebase will return an array of unique Yelp business IDs to pass into the yelp business search API. It will use the results of these individual calls to pull data about the restaurants and display cards just like results.html for the user to view.
 
 # Built With
-Bootstrap 4 - CSS Framework (w/ additional custom styling)
-Google Firebase - Database connection for user favorites/banned restaurants.
-Yelp API - Used for restaurant details a search engine.
-Google Places API - Used for map and navigation elements to restaurants.
-Pure Chat - Live business chat software.
+- Bootstrap 4 - CSS Framework (w/ additional custom styling)
+- Google Firebase - Database connection for user favorites/banned restaurants.
+- Yelp API - Used for restaurant details a search engine.
+- Google Places API - Used for map and navigation elements to restaurants.
+- Pure Chat - Live business chat software.
 
 # Versioning
 Using github for version control.
@@ -32,6 +32,3 @@ Using github for version control.
 - Vyjoo Frank
 - Sam Mansfield
 - Larry Evans
-
-# License
-This project is open source.
