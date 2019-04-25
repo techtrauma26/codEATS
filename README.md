@@ -28,10 +28,10 @@ Pure Chat - Live business chat software.
 Using github for version control.
 
 # Authors
-Cody Clegg
-Vyjoo Frank
-Sam Mansfield
-Larry Evans
+- Cody Clegg
+- Vyjoo Frank
+- Sam Mansfield
+- Larry Evans
 
 # License
 This project is open source.
