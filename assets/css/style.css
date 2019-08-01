@@ -1,7 +1,12 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
-    
+    background-image: url("../images/tabletop.jpeg");
+    /* height: 100vh;
+    width: 100vw; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #head {
@@ -46,11 +51,21 @@ label {
 .navvy {
     text-align: center;
     margin: 0 auto;
-    background-color: rgb(255,201,14) !important;
-    color: #a90e15 !important;
+    background-color: #169BE7 !important;
+    color: white !important;
     font-weight: bold;
-    text-shadow: 2px 2px darkorange !important;
+    box-shadow: -1px 8px 16px 2px rgba(0, 0, 0, 0.36);
+    /* text-shadow: 2px 2px darkorange !important; */
 
+}
+
+input[type=checkbox]
+{
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  margin: 10px;
 }
 
 .btn-filters {
@@ -61,7 +76,6 @@ label {
     font-weight: bold !important;
     color: #a90e15 !important;
     background-color: rgb(255,201,14) !important;
-    text-shadow: 2px 2px darkorange !important;
     border: 5px solid rgb(169,14,21) !important;
     /* display: flex;
     flex-wrap: wrap; */
@@ -95,7 +109,7 @@ label {
 }
 
 .fa-hamburger, .nav-link {
-    color: rgb(169,14,21) !important;
+    color: white !important;
 }
 
 .flex {
@@ -140,11 +154,11 @@ label {
 h2 {
     font-weight: bold;
     padding: .75rem;
-
+    margin-bottom: 0 !important;
+    padding: 0 !important;
 }
 .category, .location, .filters, .filterWheel {
     color: rgb(169,14,21);
-    text-shadow: 2px 2px #ffc90e;
     font-weight: bold;
     text-align: center;
     margin: -.5em;
@@ -206,48 +220,45 @@ h2 {
 }
 
 .resultsBody {
-    background-color: #ff4343;
+    background-color: rgb(218, 216, 216);
 }
 
-#list, #location-input, #favoriteDropdown, #blacklistDropdown {
-    width: 40vw;
+#list, #location-input, #favoriteDropdown, #blacklistDropdown, .btnStyle {
+    width: 20rem;
     height: auto;
     text-align: center;
+    align-content: center;
     margin: 0 auto;
-    background-color: rgb(255,201,14);
-    border: 5px solid rgb(169,14,21);
-    color: rgb(169,14,21);
+    background: linear-gradient(0deg, #7474D1, #169BE7);
+    border: 1px solid #7474D1;
+    border-radius: 3px;
+    color: white;
     font-weight: bold;
-    text-shadow: 2px 2px darkorange;
     min-width: fit-content;
     box-shadow: -1px 1px 16px 1px rgba(0, 0, 0, 0.36);
-
 }
+#location-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(206, 206, 206);
+    opacity: 1; /* Firefox */
+  }
 
 #price, #rating, #radius {
     width: 25vw;
     height: 4rem;
     text-align: center;
+    align-content: center;
     margin: 0 auto;
-    background-color: rgb(255,201,14);
-    border: 5px solid rgb(169,14,21);
-    color: rgb(169,14,21);
+    background: linear-gradient(0deg, #7474D1, #169BE7);
+    border: 1px solid #7474D1;
+    border-radius: 3px;
+    color: white;
     font-weight: bold;
     font-size: larger;
-    text-shadow: 2px 2px darkorange;
     box-shadow: -1px 1px 16px 1px rgba(0, 0, 0, 0.36);
-  
-    
-}
-
-#location-input {
-    width: 75%;
-    margin: 0;
 }
 
 .filter {
     color: #ff8000;
-    text-shadow: 1px 1px rgb(255,201,14);
     font-size: x-large;
     font-weight: bold;
     text-align: center;
@@ -261,17 +272,17 @@ h2 {
 
 
 #eat {
-    color: rgb(169,14,21);
-    text-shadow: 2px 2px #ffc90e;
+    color: white;
     font-weight: bold;
-    border: 5px solid rgb(169,14,21);
+    background: linear-gradient(0deg, #7474D1, #905CB9);
+    border: 1px solid #7474D1;
+    border-radius: 3px;
     text-align: center;
     align-content: center;
     margin: 1rem auto;
     display: inherit;
-    width: 50%;
-    margin-bottom: .25rem;
-    background-color: darkorange;
+    width: 12rem;
+    margin-bottom: 3rem;
     box-shadow: -1px 1px 16px 1px rgba(0, 0, 0, 0.36);
 }
 
@@ -280,7 +291,6 @@ h2 {
     background-color: #ffc90e !important;
     border: 5px solid rgb(169,14,21) !important;
     color: rgb(169,14,21) !important;
-    text-shadow: 2px 2px darkorange !important;
     font-size: large !important;
     font-weight: bold !important;
     width: 30vw;
@@ -288,7 +298,6 @@ h2 {
 
 .restaurant {
     color: rgb(169,14,21);
-    text-shadow: .5px 1px rgb(255,201,14);
     font-weight: bold;
     margin-bottom: 1rem;
     
@@ -457,12 +466,9 @@ span.psw {
       height: 4rem;
       text-align: center;
       margin: 0 auto;
-      background-color: rgb(255,201,14);
-      border: 5px solid rgb(169,14,21);
-      color: rgb(169,14,21);
+      color: white;
       font-weight: bold;
       font-size: small;
-      text-shadow: 2px 2px darkorange;
       padding: .15rem !important;
       
   }
@@ -475,19 +481,11 @@ span.psw {
         height: 4rem;
         text-align: center;
         margin: 0 auto;
-        background-color: rgb(255,201,14);
-        border: 5px solid rgb(169,14,21);
-        color: rgb(169,14,21);
+        color: white;
         font-weight: bold;
         font-size: small;
-        text-shadow: 2px 2px darkorange;
         padding: 0rem .15rem !important;
         
-    }
-    
-    h2 {
-        margin-bottom: 0 !important;
-        padding: 0 !important;
     }
 
     conBox {
